@@ -26,6 +26,16 @@ namespace Stripe
 
         public override string BasePath => "/v1/accounts";
 
+        public virtual ListAccountCapability Capabilities(string id, AccountundefinedOptions options = null, RequestOptions requestOptions = null)
+        {
+            return this.Request<ListAccountCapability>(HttpMethod.Get, $"{this.InstanceUrl(id)}/capabilities", options, requestOptions);
+        }
+
+        public virtual Task<ListAccountCapability> CapabilitiesAsync(string id, AccountundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return this.RequestAsync<ListAccountCapability>(HttpMethod.Get, $"{this.InstanceUrl(id)}/capabilities", options, requestOptions, cancellationToken);
+        }
+
         public virtual Account Create(AccountCreateOptions options, RequestOptions requestOptions = null)
         {
             return this.CreateEntity(options, requestOptions);
@@ -56,14 +66,14 @@ namespace Stripe
             return this.GetEntityAsync(id, options, requestOptions, cancellationToken);
         }
 
-        public virtual Account GetSelf(RequestOptions requestOptions = null)
+        public virtual Account Get(string id, AccountGetOptions options = null, RequestOptions requestOptions = null)
         {
-            return this.Request(HttpMethod.Get, "/v1/account", null, requestOptions);
+            return this.GetEntity(id, options, requestOptions);
         }
 
-        public virtual Task<Account> GetSelfAsync(RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<Account> GetAsync(string id, AccountGetOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.RequestAsync(HttpMethod.Get, "/v1/account", null, requestOptions, cancellationToken);
+            return this.GetEntityAsync(id, options, requestOptions, cancellationToken);
         }
 
         public virtual StripeList<Account> List(AccountListOptions options = null, RequestOptions requestOptions = null)
@@ -81,12 +91,22 @@ namespace Stripe
             return this.ListEntitiesAutoPaging(options, requestOptions);
         }
 
-        public virtual Account Reject(string id, AccountRejectOptions options, RequestOptions requestOptions = null)
+        public virtual unknown Persons(string id, AccountundefinedOptions options = null, RequestOptions requestOptions = null)
+        {
+            return this.Request<unknown>(HttpMethod.Get, $"{this.InstanceUrl(id)}/persons", options, requestOptions);
+        }
+
+        public virtual Task<unknown> PersonsAsync(string id, AccountundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return this.RequestAsync<unknown>(HttpMethod.Get, $"{this.InstanceUrl(id)}/persons", options, requestOptions, cancellationToken);
+        }
+
+        public virtual Account Reject(string id, AccountundefinedOptions options = null, RequestOptions requestOptions = null)
         {
             return this.Request(HttpMethod.Post, $"{this.InstanceUrl(id)}/reject", options, requestOptions);
         }
 
-        public virtual Task<Account> RejectAsync(string id, AccountRejectOptions options, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<Account> RejectAsync(string id, AccountundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.RequestAsync(HttpMethod.Post, $"{this.InstanceUrl(id)}/reject", options, requestOptions, cancellationToken);
         }

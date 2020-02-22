@@ -11,7 +11,7 @@ namespace Stripe
         public string ApiVersion { get; set; }
 
         [JsonProperty("connect")]
-        public bool? Connect { get; set; }
+        public bool Connect { get; set; }
 
         [JsonProperty("enabled_events")]
         public List<string> EnabledEvents { get; set; }

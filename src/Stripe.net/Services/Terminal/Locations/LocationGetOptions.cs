@@ -5,7 +5,5 @@ namespace Stripe.Terminal
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class LocationGetOptions : BaseOptions
-    {
-    }
+    public class LocationGetOptions : BaseOptions {}
 }

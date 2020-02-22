@@ -5,7 +5,5 @@ namespace Stripe
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class SubscriptionScheduleGetOptions : BaseOptions
-    {
-    }
+    public class SubscriptionScheduleGetOptions : BaseOptions {}
 }

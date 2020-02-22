@@ -25,14 +25,14 @@ namespace Stripe
 
         public override string BasePath => "/v1/topups";
 
-        public virtual Topup Cancel(string id, RequestOptions requestOptions = null)
+        public virtual Topup Cancel(string id, TopupundefinedOptions options = null, RequestOptions requestOptions = null)
         {
-            return this.Request(HttpMethod.Post, $"{this.InstanceUrl(id)}/cancel", null, requestOptions);
+            return this.Request(HttpMethod.Post, $"{this.InstanceUrl(id)}/cancel", options, requestOptions);
         }
 
-        public virtual Task<Topup> CancelAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<Topup> CancelAsync(string id, TopupundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.RequestAsync(HttpMethod.Post, $"{this.InstanceUrl(id)}/cancel", null, requestOptions, cancellationToken);
+            return this.RequestAsync(HttpMethod.Post, $"{this.InstanceUrl(id)}/cancel", options, requestOptions, cancellationToken);
         }
 
         public virtual Topup Create(TopupCreateOptions options, RequestOptions requestOptions = null)

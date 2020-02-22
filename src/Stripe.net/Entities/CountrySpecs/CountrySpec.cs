@@ -17,7 +17,12 @@ namespace Stripe
         public string DefaultCurrency { get; set; }
 
         [JsonProperty("supported_bank_account_currencies")]
-        public Dictionary<string, List<string>> SupportedBankAccountCurrencies { get; set; }
+        public Dictionary<string, List<string>> SupportedBankAccountCurrencies
+        {
+            get;
+            set;
+
+        }
 
         [JsonProperty("supported_payment_currencies")]
         public List<string> SupportedPaymentCurrencies { get; set; }
@@ -29,6 +34,6 @@ namespace Stripe
         public List<string> SupportedTransferCountries { get; set; }
 
         [JsonProperty("verification_fields")]
-        public Dictionary<string, Dictionary<string, List<string>>> VerificationFields { get; set; }
+        public CountrySpecVerificationFields VerificationFields { get; set; }
     }
 }

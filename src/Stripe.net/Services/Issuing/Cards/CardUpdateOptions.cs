@@ -8,14 +8,10 @@ namespace Stripe.Issuing
     public class CardUpdateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("authorization_controls")]
-        public AuthorizationControlsOptions AuthorizationControls { get; set; }
-
-        [Obsolete("This parameter does not exist and was added to the library incorrectly.")]
-        [JsonProperty("billing")]
-        public BillingOptions Billing { get; set; }
+        public CardAuthorizationControls AuthorizationControls { get; set; }
 
         [JsonProperty("metadata")]
-        public Dictionary<string, string> Metadata { get; set; }
+        public emptyStringable Metadata { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; }

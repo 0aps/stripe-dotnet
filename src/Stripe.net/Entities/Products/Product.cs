@@ -14,7 +14,7 @@ namespace Stripe
         public string Object { get; set; }
 
         [JsonProperty("active")]
-        public bool? Active { get; set; }
+        public bool Active { get; set; }
 
         [JsonProperty("attributes")]
         public List<string> Attributes { get; set; }
@@ -48,7 +48,7 @@ namespace Stripe
         public string Name { get; set; }
 
         [JsonProperty("package_dimensions")]
-        public PackageDimensions PackageDimensions { get; set; }
+        public ProductPackageDimensions PackageDimensions { get; set; }
 
         [JsonProperty("shippable")]
         public bool? Shippable { get; set; }

@@ -28,29 +28,16 @@ namespace Stripe
         [JsonProperty("current_phase")]
         public SubscriptionScheduleCurrentPhase CurrentPhase { get; set; }
 
-        #region Expandable Customer
-
-        [JsonIgnore]
-        public string CustomerId
-        {
-            get => this.InternalCustomer?.Id;
-            set => this.InternalCustomer = SetExpandableFieldId(value, this.InternalCustomer);
-        }
-
-        [JsonIgnore]
-        public Customer Customer
-        {
-            get => this.InternalCustomer?.ExpandedObject;
-            set => this.InternalCustomer = SetExpandableFieldObject(value, this.InternalCustomer);
-        }
-
         [JsonProperty("customer")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Customer>))]
-        internal ExpandableField<Customer> InternalCustomer { get; set; }
-        #endregion
+        public todo-thingy Customer { get; set; }
 
         [JsonProperty("default_settings")]
-        public SubscriptionScheduleDefaultSettings DefaultSettings { get; set; }
+        public SubscriptionScheduleDefaultSettings DefaultSettings
+        {
+            get;
+            set;
+
+        }
 
         [JsonProperty("end_behavior")]
         public string EndBehavior { get; set; }
@@ -69,23 +56,26 @@ namespace Stripe
         public DateTime? ReleasedAt { get; set; }
 
         [JsonProperty("released_subscription")]
-        public string ReleasedSubscriptionId { get; set; }
+        public string ReleasedSubscription { get; set; }
 
         [JsonProperty("renewal_interval")]
-        public SubscriptionScheduleRenewalInterval RenewalInterval { get; set; }
+        public SubscriptionScheduleRenewalInterval RenewalInterval
+        {
+            get;
+            set;
+
+        }
 
         [JsonProperty("status")]
         public string Status { get; set; }
 
         #region Expandable Subscription
-
         [JsonIgnore]
         public string SubscriptionId
         {
             get => this.InternalSubscription?.Id;
             set => this.InternalSubscription = SetExpandableFieldId(value, this.InternalSubscription);
         }
-
         [JsonIgnore]
         public Subscription Subscription
         {
@@ -95,7 +85,12 @@ namespace Stripe
 
         [JsonProperty("subscription")]
         [JsonConverter(typeof(ExpandableFieldConverter<Subscription>))]
-        internal ExpandableField<Subscription> InternalSubscription { get; set; }
+        internal ExpandableField<Subscription> InternalSubscription
+        {
+            get;
+            set;
+
+        }
         #endregion
     }
 }

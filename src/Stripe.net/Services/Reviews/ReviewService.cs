@@ -23,12 +23,12 @@ namespace Stripe
 
         public override string BasePath => "/v1/reviews";
 
-        public virtual Review Approve(string id, ReviewApproveOptions options = null, RequestOptions requestOptions = null)
+        public virtual Review Approve(string id, ReviewundefinedOptions options = null, RequestOptions requestOptions = null)
         {
             return this.Request(HttpMethod.Post, $"{this.InstanceUrl(id)}/approve", options, requestOptions);
         }
 
-        public virtual Task<Review> ApproveAsync(string id, ReviewApproveOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<Review> ApproveAsync(string id, ReviewundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.RequestAsync(HttpMethod.Post, $"{this.InstanceUrl(id)}/approve", options, requestOptions, cancellationToken);
         }

@@ -19,10 +19,15 @@ namespace Stripe
         [JsonProperty("payment_method")]
         public string PaymentMethod { get; set; }
 
+        [JsonProperty("payment_method_options")]
+        public SetupIntentPaymentMethodOptions PaymentMethodOptions
+        {
+            get;
+            set;
+
+        }
+
         [JsonProperty("payment_method_types")]
         public List<string> PaymentMethodTypes { get; set; }
-
-        [JsonProperty("usage")]
-        public string Usage { get; set; }
     }
 }

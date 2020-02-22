@@ -25,22 +25,22 @@ namespace Stripe
 
         public override string BasePath => "/v1/setup_intents";
 
-        public virtual SetupIntent Cancel(string id, SetupIntentCancelOptions options = null, RequestOptions requestOptions = null)
+        public virtual SetupIntent Cancel(string id, SetupIntentundefinedOptions options = null, RequestOptions requestOptions = null)
         {
             return this.Request(HttpMethod.Post, $"{this.InstanceUrl(id)}/cancel", options, requestOptions);
         }
 
-        public virtual Task<SetupIntent> CancelAsync(string id, SetupIntentCancelOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<SetupIntent> CancelAsync(string id, SetupIntentundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.RequestAsync(HttpMethod.Post, $"{this.InstanceUrl(id)}/cancel", options, requestOptions, cancellationToken);
         }
 
-        public virtual SetupIntent Confirm(string id, SetupIntentConfirmOptions options = null, RequestOptions requestOptions = null)
+        public virtual SetupIntent Confirm(string id, SetupIntentundefinedOptions options = null, RequestOptions requestOptions = null)
         {
             return this.Request(HttpMethod.Post, $"{this.InstanceUrl(id)}/confirm", options, requestOptions);
         }
 
-        public virtual Task<SetupIntent> ConfirmAsync(string id, SetupIntentConfirmOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<SetupIntent> ConfirmAsync(string id, SetupIntentundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.RequestAsync(HttpMethod.Post, $"{this.InstanceUrl(id)}/confirm", options, requestOptions, cancellationToken);
         }

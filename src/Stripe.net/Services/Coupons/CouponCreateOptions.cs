@@ -5,28 +5,25 @@ namespace Stripe
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class CouponCreateOptions : BaseOptions, IHasId, IHasMetadata
+    public class CouponCreateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("id")]
         public string Id { get; set; }
 
         [JsonProperty("amount_off")]
-        public long? AmountOff { get; set; }
+        public long AmountOff { get; set; }
 
         [JsonProperty("currency")]
         public string Currency { get; set; }
-
-        [JsonProperty("percent_off")]
-        public decimal? PercentOff { get; set; }
 
         [JsonProperty("duration")]
         public string Duration { get; set; }
 
         [JsonProperty("duration_in_months")]
-        public long? DurationInMonths { get; set; }
+        public long DurationInMonths { get; set; }
 
         [JsonProperty("max_redemptions")]
-        public long? MaxRedemptions { get; set; }
+        public long MaxRedemptions { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }
@@ -34,8 +31,11 @@ namespace Stripe
         [JsonProperty("name")]
         public string Name { get; set; }
 
+        [JsonProperty("percent_off")]
+        public decimal PercentOff { get; set; }
+
         [JsonProperty("redeem_by")]
         [JsonConverter(typeof(DateTimeConverter))]
-        public DateTime? RedeemBy { get; set; }
+        public DateTime RedeemBy { get; set; }
     }
 }

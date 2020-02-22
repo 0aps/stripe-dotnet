@@ -17,7 +17,7 @@ namespace Stripe
         public PaymentMethodAuBecsDebit AuBecsDebit { get; set; }
 
         [JsonProperty("billing_details")]
-        public BillingDetails BillingDetails { get; set; }
+        public PaymentMethodBillingDetails BillingDetails { get; set; }
 
         [JsonProperty("card")]
         public PaymentMethodCard Card { get; set; }
@@ -30,14 +30,12 @@ namespace Stripe
         public DateTime Created { get; set; }
 
         #region Expandable Customer
-
         [JsonIgnore]
         public string CustomerId
         {
             get => this.InternalCustomer?.Id;
             set => this.InternalCustomer = SetExpandableFieldId(value, this.InternalCustomer);
         }
-
         [JsonIgnore]
         public Customer Customer
         {

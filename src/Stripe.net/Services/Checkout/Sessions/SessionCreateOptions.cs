@@ -16,14 +16,14 @@ namespace Stripe.Checkout
         [JsonProperty("client_reference_id")]
         public string ClientReferenceId { get; set; }
 
-        [JsonProperty("customer_email")]
-        public string CustomerEmail { get; set; }
-
         [JsonProperty("customer")]
         public string Customer { get; set; }
 
+        [JsonProperty("customer_email")]
+        public string CustomerEmail { get; set; }
+
         [JsonProperty("line_items")]
-        public List<SessionLineItemOptions> LineItems { get; set; }
+        public List<SessionLineItem> LineItems { get; set; }
 
         [JsonProperty("locale")]
         public string Locale { get; set; }
@@ -35,19 +35,19 @@ namespace Stripe.Checkout
         public string Mode { get; set; }
 
         [JsonProperty("payment_intent_data")]
-        public SessionPaymentIntentDataOptions PaymentIntentData { get; set; }
+        public SessionPaymentIntentData PaymentIntentData { get; set; }
 
         [JsonProperty("payment_method_types")]
         public List<string> PaymentMethodTypes { get; set; }
 
         [JsonProperty("setup_intent_data")]
-        public SessionSetupIntentDataOptions SetupIntentData { get; set; }
+        public SessionSetupIntentData SetupIntentData { get; set; }
 
         [JsonProperty("submit_type")]
         public string SubmitType { get; set; }
 
         [JsonProperty("subscription_data")]
-        public SessionSubscriptionDataOptions SubscriptionData { get; set; }
+        public SessionSubscriptionData SubscriptionData { get; set; }
 
         [JsonProperty("success_url")]
         public string SuccessUrl { get; set; }

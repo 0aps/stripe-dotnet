@@ -5,12 +5,5 @@ namespace Stripe
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class FileLinkListOptions : ListOptionsWithCreated
-    {
-        [JsonProperty("expired")]
-        public bool? Expired { get; set; }
-
-        [JsonProperty("file")]
-        public string File { get; set; }
-    }
+    public class FileLinkListOptions : BaseOptions {}
 }

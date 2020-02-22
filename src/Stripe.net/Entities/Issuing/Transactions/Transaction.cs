@@ -5,7 +5,7 @@ namespace Stripe.Issuing
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class Transaction : StripeEntity<Transaction>, IHasId, IHasMetadata, IHasObject, IBalanceTransactionSource
+    public class Transaction : StripeEntity<Transaction>, IHasId, IHasMetadata, IHasObject
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -23,7 +23,6 @@ namespace Stripe.Issuing
             get => this.InternalAuthorization?.Id;
             set => this.InternalAuthorization = SetExpandableFieldId(value, this.InternalAuthorization);
         }
-
         [JsonIgnore]
         public Authorization Authorization
         {
@@ -33,7 +32,12 @@ namespace Stripe.Issuing
 
         [JsonProperty("authorization")]
         [JsonConverter(typeof(ExpandableFieldConverter<Authorization>))]
-        internal ExpandableField<Authorization> InternalAuthorization { get; set; }
+        internal ExpandableField<Authorization> InternalAuthorization
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         #region Expandable BalanceTransaction
@@ -43,7 +47,6 @@ namespace Stripe.Issuing
             get => this.InternalBalanceTransaction?.Id;
             set => this.InternalBalanceTransaction = SetExpandableFieldId(value, this.InternalBalanceTransaction);
         }
-
         [JsonIgnore]
         public BalanceTransaction BalanceTransaction
         {
@@ -53,28 +56,16 @@ namespace Stripe.Issuing
 
         [JsonProperty("balance_transaction")]
         [JsonConverter(typeof(ExpandableFieldConverter<BalanceTransaction>))]
-        internal ExpandableField<BalanceTransaction> InternalBalanceTransaction { get; set; }
+        internal ExpandableField<BalanceTransaction> InternalBalanceTransaction
+        {
+            get;
+            set;
+
+        }
         #endregion
-
-        #region Expandable Card
-        [JsonIgnore]
-        public string CardId
-        {
-            get => this.InternalCard?.Id;
-            set => this.InternalCard = SetExpandableFieldId(value, this.InternalCard);
-        }
-
-        [JsonIgnore]
-        public Card Card
-        {
-            get => this.InternalCard?.ExpandedObject;
-            set => this.InternalCard = SetExpandableFieldObject(value, this.InternalCard);
-        }
 
         [JsonProperty("card")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Card>))]
-        internal ExpandableField<Card> InternalCard { get; set; }
-        #endregion
+        public todo-thingy Card { get; set; }
 
         #region Expandable Cardholder
         [JsonIgnore]
@@ -83,7 +74,6 @@ namespace Stripe.Issuing
             get => this.InternalCardholder?.Id;
             set => this.InternalCardholder = SetExpandableFieldId(value, this.InternalCardholder);
         }
-
         [JsonIgnore]
         public Cardholder Cardholder
         {
@@ -110,7 +100,6 @@ namespace Stripe.Issuing
             get => this.InternalDispute?.Id;
             set => this.InternalDispute = SetExpandableFieldId(value, this.InternalDispute);
         }
-
         [JsonIgnore]
         public Dispute Dispute
         {
@@ -133,7 +122,7 @@ namespace Stripe.Issuing
         public string MerchantCurrency { get; set; }
 
         [JsonProperty("merchant_data")]
-        public MerchantData MerchantData { get; set; }
+        public TransactionMerchantData MerchantData { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }

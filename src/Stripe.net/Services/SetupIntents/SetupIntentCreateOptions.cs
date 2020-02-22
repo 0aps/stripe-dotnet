@@ -8,7 +8,7 @@ namespace Stripe
     public class SetupIntentCreateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("confirm")]
-        public bool? Confirm { get; set; }
+        public bool Confirm { get; set; }
 
         [JsonProperty("customer")]
         public string Customer { get; set; }
@@ -17,7 +17,7 @@ namespace Stripe
         public string Description { get; set; }
 
         [JsonProperty("mandate_data")]
-        public SetupIntentMandateDataOptions MandateData { get; set; }
+        public SetupIntentMandateData MandateData { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }
@@ -29,7 +29,12 @@ namespace Stripe
         public string PaymentMethod { get; set; }
 
         [JsonProperty("payment_method_options")]
-        public SetupIntentPaymentMethodOptionsOptions PaymentMethodOptions { get; set; }
+        public SetupIntentPaymentMethodOptions PaymentMethodOptions
+        {
+            get;
+            set;
+
+        }
 
         [JsonProperty("payment_method_types")]
         public List<string> PaymentMethodTypes { get; set; }
@@ -38,7 +43,7 @@ namespace Stripe
         public string ReturnUrl { get; set; }
 
         [JsonProperty("single_use")]
-        public SetupIntentSingleUseOptions SingleUse { get; set; }
+        public SetupIntentSingleUse SingleUse { get; set; }
 
         [JsonProperty("usage")]
         public string Usage { get; set; }

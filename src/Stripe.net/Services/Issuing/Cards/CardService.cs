@@ -35,14 +35,14 @@ namespace Stripe.Issuing
             return this.CreateEntityAsync(options, requestOptions, cancellationToken);
         }
 
-        public virtual CardDetails Details(string id, RequestOptions requestOptions = null)
+        public virtual CardDetails Details(string id, CardundefinedOptions options = null, RequestOptions requestOptions = null)
         {
-            return this.Request<CardDetails>(HttpMethod.Get, $"{this.InstanceUrl(id)}/details", null, requestOptions);
+            return this.Request<CardDetails>(HttpMethod.Get, $"{this.InstanceUrl(id)}/details", options, requestOptions);
         }
 
-        public virtual Task<CardDetails> DetailsAsync(string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<CardDetails> DetailsAsync(string id, CardundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.RequestAsync<CardDetails>(HttpMethod.Get, $"{this.InstanceUrl(id)}/details", null, requestOptions, cancellationToken);
+            return this.RequestAsync<CardDetails>(HttpMethod.Get, $"{this.InstanceUrl(id)}/details", options, requestOptions, cancellationToken);
         }
 
         public virtual Card Get(string id, CardGetOptions options = null, RequestOptions requestOptions = null)

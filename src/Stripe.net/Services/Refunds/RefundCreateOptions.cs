@@ -8,7 +8,7 @@ namespace Stripe
     public class RefundCreateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("amount")]
-        public long? Amount { get; set; }
+        public long Amount { get; set; }
 
         [JsonProperty("charge")]
         public string Charge { get; set; }
@@ -23,9 +23,9 @@ namespace Stripe
         public string Reason { get; set; }
 
         [JsonProperty("refund_application_fee")]
-        public bool? RefundApplicationFee { get; set; }
+        public bool RefundApplicationFee { get; set; }
 
         [JsonProperty("reverse_transfer")]
-        public bool? ReverseTransfer { get; set; }
+        public bool ReverseTransfer { get; set; }
     }
 }

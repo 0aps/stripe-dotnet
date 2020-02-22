@@ -10,8 +10,7 @@ namespace Stripe
     public class SourceService : Service<Source>,
         ICreatable<Source, SourceCreateOptions>,
         IRetrievable<Source, SourceGetOptions>,
-        IUpdatable<Source, SourceUpdateOptions>,
-        INestedListable<Source, SourceListOptions>
+        IUpdatable<Source, SourceUpdateOptions>
     {
         public SourceService()
             : base(null)
@@ -25,16 +24,6 @@ namespace Stripe
 
         public override string BasePath => "/v1/sources";
 
-        public virtual Source Attach(string parentId, SourceAttachOptions options, RequestOptions requestOptions = null)
-        {
-            return this.Request<Source>(HttpMethod.Post, $"/v1/customers/{parentId}/sources", options, requestOptions);
-        }
-
-        public virtual Task<Source> AttachAsync(string parentId, SourceAttachOptions options, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
-        {
-            return this.RequestAsync<Source>(HttpMethod.Post, $"/v1/customers/{parentId}/sources", options, requestOptions, cancellationToken);
-        }
-
         public virtual Source Create(SourceCreateOptions options, RequestOptions requestOptions = null)
         {
             return this.CreateEntity(options, requestOptions);
@@ -45,14 +34,14 @@ namespace Stripe
             return this.CreateEntityAsync(options, requestOptions, cancellationToken);
         }
 
-        public virtual Source Detach(string parentId, string id, RequestOptions requestOptions = null)
+        public virtual unknown Detach(string id, SourceundefinedOptions options = null, RequestOptions requestOptions = null)
         {
-            return this.Request<Source>(HttpMethod.Delete, $"/v1/customers/{parentId}/sources/{id}", null, requestOptions);
+            return this.Request<unknown>(HttpMethod.Delete, /v1/customers/{customer}/sources/{id}, options, requestOptions);
         }
 
-        public virtual Task<Source> DetachAsync(string parentId, string id, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<unknown> DetachAsync(string id, SourceundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.RequestAsync<Source>(HttpMethod.Delete, $"/v1/customers/{parentId}/sources/{id}", null, requestOptions, cancellationToken);
+            return this.RequestAsync<unknown>(HttpMethod.Delete, /v1/customers/{customer}/sources/{id}, options, requestOptions, cancellationToken);
         }
 
         public virtual Source Get(string id, SourceGetOptions options = null, RequestOptions requestOptions = null)
@@ -65,19 +54,14 @@ namespace Stripe
             return this.GetEntityAsync(id, options, requestOptions, cancellationToken);
         }
 
-        public virtual StripeList<Source> List(string parentId, SourceListOptions options = null, RequestOptions requestOptions = null)
+        public virtual ApmsSourcesSourceTransactionList SourceTransactions(string id, SourceundefinedOptions options = null, RequestOptions requestOptions = null)
         {
-            return this.Request<StripeList<Source>>(HttpMethod.Get, $"/v1/customers/{parentId}/sources", options ?? new SourceListOptions(), requestOptions);
+            return this.Request<ApmsSourcesSourceTransactionList>(HttpMethod.Get, $"{this.InstanceUrl(id)}/source_transactions", options, requestOptions);
         }
 
-        public virtual Task<StripeList<Source>> ListAsync(string parentId, SourceListOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<ApmsSourcesSourceTransactionList> SourceTransactionsAsync(string id, SourceundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.RequestAsync<StripeList<Source>>(HttpMethod.Get, $"/v1/customers/{parentId}/sources", options ?? new SourceListOptions(), requestOptions, cancellationToken);
-        }
-
-        public virtual IEnumerable<Source> ListAutoPaging(string parentId, SourceListOptions options = null, RequestOptions requestOptions = null)
-        {
-            return this.ListRequestAutoPaging<Source>($"/v1/customers/{parentId}/sources", options ?? new SourceListOptions(), requestOptions);
+            return this.RequestAsync<ApmsSourcesSourceTransactionList>(HttpMethod.Get, $"{this.InstanceUrl(id)}/source_transactions", options, requestOptions, cancellationToken);
         }
 
         public virtual Source Update(string id, SourceUpdateOptions options, RequestOptions requestOptions = null)
@@ -90,14 +74,14 @@ namespace Stripe
             return this.UpdateEntityAsync(id, options, requestOptions, cancellationToken);
         }
 
-        public virtual Source Verify(string id, SourceVerifyOptions options, RequestOptions requestOptions = null)
+        public virtual Source Verify(string id, SourceundefinedOptions options = null, RequestOptions requestOptions = null)
         {
-            return this.Request<Source>(HttpMethod.Post, $"{this.InstanceUrl(id)}/verify", options, requestOptions);
+            return this.Request(HttpMethod.Post, $"{this.InstanceUrl(id)}/verify", options, requestOptions);
         }
 
-        public virtual Task<Source> VerifyAsync(string id, SourceVerifyOptions options, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<Source> VerifyAsync(string id, SourceundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.RequestAsync<Source>(HttpMethod.Post, $"{this.InstanceUrl(id)}/verify", options, requestOptions, cancellationToken);
+            return this.RequestAsync(HttpMethod.Post, $"{this.InstanceUrl(id)}/verify", options, requestOptions, cancellationToken);
         }
     }
 }

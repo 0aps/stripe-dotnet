@@ -7,14 +7,14 @@ namespace Stripe
 
     public class ChargeUpdateOptions : BaseOptions, IHasMetadata
     {
+        [JsonProperty("customer")]
+        public string Customer { get; set; }
+
         [JsonProperty("description")]
         public string Description { get; set; }
 
-        [JsonProperty("exchange_rate")]
-        public decimal? ExchangeRate { get; set; }
-
         [JsonProperty("fraud_details")]
-        public Dictionary<string, string> FraudDetails { get; set; }
+        public ChargeFraudDetails FraudDetails { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }
@@ -23,7 +23,7 @@ namespace Stripe
         public string ReceiptEmail { get; set; }
 
         [JsonProperty("shipping")]
-        public ChargeShippingOptions Shipping { get; set; }
+        public ChargeShipping Shipping { get; set; }
 
         [JsonProperty("transfer_group")]
         public string TransferGroup { get; set; }

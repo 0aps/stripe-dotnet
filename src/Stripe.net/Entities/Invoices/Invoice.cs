@@ -50,7 +50,6 @@ namespace Stripe
             get => this.InternalCharge?.Id;
             set => this.InternalCharge = SetExpandableFieldId(value, this.InternalCharge);
         }
-
         [JsonIgnore]
         public Charge Charge
         {
@@ -76,28 +75,11 @@ namespace Stripe
         [JsonProperty("custom_fields")]
         public List<InvoiceCustomField> CustomFields { get; set; }
 
-        #region Expandable Customer
-        [JsonIgnore]
-        public string CustomerId
-        {
-            get => this.InternalCustomer?.Id;
-            set => this.InternalCustomer = SetExpandableFieldId(value, this.InternalCustomer);
-        }
-
-        [JsonIgnore]
-        public Customer Customer
-        {
-            get => this.InternalCustomer?.ExpandedObject;
-            set => this.InternalCustomer = SetExpandableFieldObject(value, this.InternalCustomer);
-        }
-
         [JsonProperty("customer")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Customer>))]
-        internal ExpandableField<Customer> InternalCustomer { get; set; }
-        #endregion
+        public todo-thingy Customer { get; set; }
 
         [JsonProperty("customer_address")]
-        public Address CustomerAddress { get; set; }
+        public InvoiceCustomerAddress CustomerAddress { get; set; }
 
         [JsonProperty("customer_email")]
         public string CustomerEmail { get; set; }
@@ -109,7 +91,7 @@ namespace Stripe
         public string CustomerPhone { get; set; }
 
         [JsonProperty("customer_shipping")]
-        public Shipping CustomerShipping { get; set; }
+        public InvoiceCustomerShipping CustomerShipping { get; set; }
 
         [JsonProperty("customer_tax_exempt")]
         public string CustomerTaxExempt { get; set; }
@@ -118,24 +100,27 @@ namespace Stripe
         public List<InvoiceCustomerTaxId> CustomerTaxIds { get; set; }
 
         #region Expandable DefaultPaymentMethod
-
         [JsonIgnore]
         public string DefaultPaymentMethodId
         {
             get => this.InternalDefaultPaymentMethod?.Id;
             set => this.InternalDefaultPaymentMethod = SetExpandableFieldId(value, this.InternalDefaultPaymentMethod);
         }
-
         [JsonIgnore]
-        public PaymentMethod DefaultPaymentMethod
+        public DefaultPaymentMethod DefaultPaymentMethod
         {
             get => this.InternalDefaultPaymentMethod?.ExpandedObject;
             set => this.InternalDefaultPaymentMethod = SetExpandableFieldObject(value, this.InternalDefaultPaymentMethod);
         }
 
         [JsonProperty("default_payment_method")]
-        [JsonConverter(typeof(ExpandableFieldConverter<PaymentMethod>))]
-        internal ExpandableField<PaymentMethod> InternalDefaultPaymentMethod { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<DefaultPaymentMethod>))]
+        internal ExpandableField<DefaultPaymentMethod> InternalDefaultPaymentMethod
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         #region Expandable DefaultSource
@@ -145,21 +130,28 @@ namespace Stripe
             get => this.InternalDefaultSource?.Id;
             set => this.InternalDefaultSource = SetExpandableFieldId(value, this.InternalDefaultSource);
         }
-
         [JsonIgnore]
-        public IPaymentSource DefaultSource
+        public DefaultSource DefaultSource
         {
             get => this.InternalDefaultSource?.ExpandedObject;
             set => this.InternalDefaultSource = SetExpandableFieldObject(value, this.InternalDefaultSource);
         }
 
         [JsonProperty("default_source")]
-        [JsonConverter(typeof(ExpandableFieldConverter<IPaymentSource>))]
-        internal ExpandableField<IPaymentSource> InternalDefaultSource { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<DefaultSource>))]
+        internal ExpandableField<DefaultSource> InternalDefaultSource
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("default_tax_rates")]
         public List<TaxRate> DefaultTaxRates { get; set; }
+
+        [JsonProperty("deleted", NullValueHandling=NullValueHandling.Ignore)]
+        public bool? Deleted { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }
@@ -203,14 +195,12 @@ namespace Stripe
         public bool Paid { get; set; }
 
         #region Expandable PaymentIntent
-
         [JsonIgnore]
         public string PaymentIntentId
         {
             get => this.InternalPaymentIntent?.Id;
             set => this.InternalPaymentIntent = SetExpandableFieldId(value, this.InternalPaymentIntent);
         }
-
         [JsonIgnore]
         public PaymentIntent PaymentIntent
         {
@@ -220,7 +210,12 @@ namespace Stripe
 
         [JsonProperty("payment_intent")]
         [JsonConverter(typeof(ExpandableFieldConverter<PaymentIntent>))]
-        internal ExpandableField<PaymentIntent> InternalPaymentIntent { get; set; }
+        internal ExpandableField<PaymentIntent> InternalPaymentIntent
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("period_end")]
@@ -232,10 +227,10 @@ namespace Stripe
         public DateTime PeriodStart { get; set; }
 
         [JsonProperty("post_payment_credit_notes_amount")]
-        public long? PostPaymentCreditNotesAmount { get; set; }
+        public long PostPaymentCreditNotesAmount { get; set; }
 
         [JsonProperty("pre_payment_credit_notes_amount")]
-        public long? PrePaymentCreditNotesAmount { get; set; }
+        public long PrePaymentCreditNotesAmount { get; set; }
 
         [JsonProperty("receipt_number")]
         public string ReceiptNumber { get; set; }
@@ -259,7 +254,6 @@ namespace Stripe
             get => this.InternalSubscription?.Id;
             set => this.InternalSubscription = SetExpandableFieldId(value, this.InternalSubscription);
         }
-
         [JsonIgnore]
         public Subscription Subscription
         {
@@ -269,12 +263,16 @@ namespace Stripe
 
         [JsonProperty("subscription")]
         [JsonConverter(typeof(ExpandableFieldConverter<Subscription>))]
-        internal ExpandableField<Subscription> InternalSubscription { get; set; }
+        internal ExpandableField<Subscription> InternalSubscription
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("subscription_proration_date")]
-        [JsonConverter(typeof(DateTimeConverter))]
-        public DateTime SubscriptionProrationDate { get; set; }
+        public long SubscriptionProrationDate { get; set; }
 
         [JsonProperty("subtotal")]
         public long Subtotal { get; set; }
@@ -282,21 +280,20 @@ namespace Stripe
         [JsonProperty("tax")]
         public long? Tax { get; set; }
 
-        [Obsolete("Use DefaultTaxRates instead")]
         [JsonProperty("tax_percent")]
         public decimal? TaxPercent { get; set; }
 
         [JsonProperty("threshold_reason")]
         public InvoiceThresholdReason ThresholdReason { get; set; }
 
+        [JsonProperty("total")]
+        public long Total { get; set; }
+
         [JsonProperty("total_tax_amounts")]
-        public List<InvoiceTaxAmount> TotalTaxAmounts { get; set; }
+        public List<InvoiceTotalTaxAmount> TotalTaxAmounts { get; set; }
 
         [JsonProperty("transfer_data")]
         public InvoiceTransferData TransferData { get; set; }
-
-        [JsonProperty("total")]
-        public long Total { get; set; }
 
         [JsonProperty("webhooks_delivered_at")]
         [JsonConverter(typeof(DateTimeConverter))]

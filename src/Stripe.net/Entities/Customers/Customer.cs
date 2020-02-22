@@ -14,7 +14,7 @@ namespace Stripe
         public string Object { get; set; }
 
         [JsonProperty("address")]
-        public Address Address { get; set; }
+        public CustomerAddress Address { get; set; }
 
         [JsonProperty("balance")]
         public long Balance { get; set; }
@@ -27,34 +27,34 @@ namespace Stripe
         public string Currency { get; set; }
 
         #region Expandable DefaultSource
-
         [JsonIgnore]
         public string DefaultSourceId
         {
             get => this.InternalDefaultSource?.Id;
             set => this.InternalDefaultSource = SetExpandableFieldId(value, this.InternalDefaultSource);
         }
-
         [JsonIgnore]
-        public IPaymentSource DefaultSource
+        public DefaultSource DefaultSource
         {
             get => this.InternalDefaultSource?.ExpandedObject;
             set => this.InternalDefaultSource = SetExpandableFieldObject(value, this.InternalDefaultSource);
         }
 
         [JsonProperty("default_source")]
-        [JsonConverter(typeof(ExpandableFieldConverter<IPaymentSource>))]
-        internal ExpandableField<IPaymentSource> InternalDefaultSource { get; set; }
-        #endregion
+        [JsonConverter(typeof(ExpandableFieldConverter<DefaultSource>))]
+        internal ExpandableField<DefaultSource> InternalDefaultSource
+        {
+            get;
+            set;
 
-        [JsonProperty("default_source_type")]
-        public string DefaultSourceType { get; set; }
+        }
+        #endregion
 
         [JsonProperty("deleted", NullValueHandling=NullValueHandling.Ignore)]
         public bool? Deleted { get; set; }
 
         [JsonProperty("delinquent")]
-        public bool Delinquent { get; set; }
+        public bool? Delinquent { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }
@@ -87,10 +87,10 @@ namespace Stripe
         public List<string> PreferredLocales { get; set; }
 
         [JsonProperty("shipping")]
-        public Shipping Shipping { get; set; }
+        public CustomerShipping Shipping { get; set; }
 
         [JsonProperty("sources")]
-        public StripeList<IPaymentSource> Sources { get; set; }
+        public StripeList<todo-thingy> Sources { get; set; }
 
         [JsonProperty("subscriptions")]
         public StripeList<Subscription> Subscriptions { get; set; }

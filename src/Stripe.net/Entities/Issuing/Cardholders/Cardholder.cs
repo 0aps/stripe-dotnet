@@ -14,10 +14,15 @@ namespace Stripe.Issuing
         public string Object { get; set; }
 
         [JsonProperty("authorization_controls")]
-        public CardholderAuthorizationControls AuthorizationControls { get; set; }
+        public CardholderAuthorizationControls AuthorizationControls
+        {
+            get;
+            set;
+
+        }
 
         [JsonProperty("billing")]
-        public Billing Billing { get; set; }
+        public CardholderBilling Billing { get; set; }
 
         [JsonProperty("company")]
         public CardholderCompany Company { get; set; }

@@ -5,9 +5,5 @@ namespace Stripe
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class SourceGetOptions : BaseOptions
-    {
-        [JsonProperty("client_secret")]
-        public string ClientSecret { get; set; }
-    }
+    public class SourceGetOptions : BaseOptions {}
 }

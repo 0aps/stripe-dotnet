@@ -8,6 +8,6 @@ namespace Stripe.Issuing
     public class AuthorizationUpdateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("metadata")]
-        public Dictionary<string, string> Metadata { get; set; }
+        public emptyStringable Metadata { get; set; }
     }
 }

@@ -33,7 +33,7 @@ namespace Stripe
         public string Image { get; set; }
 
         [JsonProperty("inventory")]
-        public Inventory Inventory { get; set; }
+        public SkuInventory Inventory { get; set; }
 
         [JsonProperty("livemode")]
         public bool Livemode { get; set; }
@@ -42,31 +42,13 @@ namespace Stripe
         public Dictionary<string, string> Metadata { get; set; }
 
         [JsonProperty("package_dimensions")]
-        public PackageDimensions PackageDimensions { get; set; }
+        public SkuPackageDimensions PackageDimensions { get; set; }
 
         [JsonProperty("price")]
         public long Price { get; set; }
 
-        #region Expandable Product
-
-        [JsonIgnore]
-        public string ProductId
-        {
-            get => this.InternalProduct?.Id;
-            set => this.InternalProduct = SetExpandableFieldId(value, this.InternalProduct);
-        }
-
-        [JsonIgnore]
-        public Product Product
-        {
-            get => this.InternalProduct?.ExpandedObject;
-            set => this.InternalProduct = SetExpandableFieldObject(value, this.InternalProduct);
-        }
-
         [JsonProperty("product")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Product>))]
-        internal ExpandableField<Product> InternalProduct { get; set; }
-        #endregion
+        public todo-thingy Product { get; set; }
 
         [JsonProperty("updated")]
         [JsonConverter(typeof(DateTimeConverter))]

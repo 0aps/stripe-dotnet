@@ -9,6 +9,7 @@ namespace Stripe.Radar
 
     public class ValueListItemService : Service<ValueListItem>,
         ICreatable<ValueListItem, ValueListItemCreateOptions>,
+        IDeletable<ValueListItem>,
         IListable<ValueListItem, ValueListItemListOptions>,
         IRetrievable<ValueListItem, ValueListItemGetOptions>
     {

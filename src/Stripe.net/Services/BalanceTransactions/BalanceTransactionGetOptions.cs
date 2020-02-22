@@ -5,7 +5,5 @@ namespace Stripe
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class BalanceTransactionGetOptions : BaseOptions
-    {
-    }
+    public class BalanceTransactionGetOptions : BaseOptions {}
 }

@@ -5,9 +5,5 @@ namespace Stripe
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class PaymentIntentGetOptions : BaseOptions
-    {
-        [JsonProperty("client_secret")]
-        public string ClientSecret { get; set; }
-    }
+    public class PaymentIntentGetOptions : BaseOptions {}
 }

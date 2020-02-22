@@ -14,23 +14,21 @@ namespace Stripe
         public string Object { get; set; }
 
         [JsonProperty("amount")]
-        public long? Amount { get; set; }
+        public long Amount { get; set; }
 
         [JsonProperty("amount_capturable")]
-        public long? AmountCapturable { get; set; }
+        public long AmountCapturable { get; set; }
 
         [JsonProperty("amount_received")]
-        public long? AmountReceived { get; set; }
+        public long AmountReceived { get; set; }
 
         #region Expandable Application
-
         [JsonIgnore]
         public string ApplicationId
         {
             get => this.InternalApplication?.Id;
             set => this.InternalApplication = SetExpandableFieldId(value, this.InternalApplication);
         }
-
         [JsonIgnore]
         public Application Application
         {
@@ -73,14 +71,12 @@ namespace Stripe
         public string Currency { get; set; }
 
         #region Expandable Customer
-
         [JsonIgnore]
         public string CustomerId
         {
             get => this.InternalCustomer?.Id;
             set => this.InternalCustomer = SetExpandableFieldId(value, this.InternalCustomer);
         }
-
         [JsonIgnore]
         public Customer Customer
         {
@@ -97,14 +93,12 @@ namespace Stripe
         public string Description { get; set; }
 
         #region Expandable Invoice
-
         [JsonIgnore]
         public string InvoiceId
         {
             get => this.InternalInvoice?.Id;
             set => this.InternalInvoice = SetExpandableFieldId(value, this.InternalInvoice);
         }
-
         [JsonIgnore]
         public Invoice Invoice
         {
@@ -118,7 +112,7 @@ namespace Stripe
         #endregion
 
         [JsonProperty("last_payment_error")]
-        public StripeError LastPaymentError { get; set; }
+        public PaymentIntentLastPaymentError LastPaymentError { get; set; }
 
         [JsonProperty("livemode")]
         public bool Livemode { get; set; }
@@ -129,36 +123,32 @@ namespace Stripe
         [JsonProperty("next_action")]
         public PaymentIntentNextAction NextAction { get; set; }
 
-        #region Expandable OnBehalfOf (Account)
-
+        #region Expandable OnBehalfOf
         [JsonIgnore]
         public string OnBehalfOfId
         {
             get => this.InternalOnBehalfOf?.Id;
             set => this.InternalOnBehalfOf = SetExpandableFieldId(value, this.InternalOnBehalfOf);
         }
-
         [JsonIgnore]
-        public Account OnBehalfOf
+        public OnBehalfOf OnBehalfOf
         {
             get => this.InternalOnBehalfOf?.ExpandedObject;
             set => this.InternalOnBehalfOf = SetExpandableFieldObject(value, this.InternalOnBehalfOf);
         }
 
         [JsonProperty("on_behalf_of")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Account>))]
-        internal ExpandableField<Account> InternalOnBehalfOf { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<OnBehalfOf>))]
+        internal ExpandableField<OnBehalfOf> InternalOnBehalfOf { get; set; }
         #endregion
 
         #region Expandable PaymentMethod
-
         [JsonIgnore]
         public string PaymentMethodId
         {
             get => this.InternalPaymentMethod?.Id;
             set => this.InternalPaymentMethod = SetExpandableFieldId(value, this.InternalPaymentMethod);
         }
-
         [JsonIgnore]
         public PaymentMethod PaymentMethod
         {
@@ -168,11 +158,21 @@ namespace Stripe
 
         [JsonProperty("payment_method")]
         [JsonConverter(typeof(ExpandableFieldConverter<PaymentMethod>))]
-        internal ExpandableField<PaymentMethod> InternalPaymentMethod { get; set; }
+        internal ExpandableField<PaymentMethod> InternalPaymentMethod
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("payment_method_options")]
-        public PaymentIntentPaymentMethodOptions PaymentMethodOptions { get; set; }
+        public PaymentIntentPaymentMethodOptions PaymentMethodOptions
+        {
+            get;
+            set;
+
+        }
 
         [JsonProperty("payment_method_types")]
         public List<string> PaymentMethodTypes { get; set; }
@@ -181,14 +181,12 @@ namespace Stripe
         public string ReceiptEmail { get; set; }
 
         #region Expandable Review
-
         [JsonIgnore]
         public string ReviewId
         {
             get => this.InternalReview?.Id;
             set => this.InternalReview = SetExpandableFieldId(value, this.InternalReview);
         }
-
         [JsonIgnore]
         public Review Review
         {
@@ -205,27 +203,25 @@ namespace Stripe
         public string SetupFutureUsage { get; set; }
 
         [JsonProperty("shipping")]
-        public Shipping Shipping { get; set; }
+        public PaymentIntentShipping Shipping { get; set; }
 
         #region Expandable Source
-
         [JsonIgnore]
         public string SourceId
         {
             get => this.InternalSource?.Id;
             set => this.InternalSource = SetExpandableFieldId(value, this.InternalSource);
         }
-
         [JsonIgnore]
-        public IPaymentSource Source
+        public Source Source
         {
             get => this.InternalSource?.ExpandedObject;
             set => this.InternalSource = SetExpandableFieldObject(value, this.InternalSource);
         }
 
         [JsonProperty("source")]
-        [JsonConverter(typeof(ExpandableFieldConverter<IPaymentSource>))]
-        internal ExpandableField<IPaymentSource> InternalSource { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<Source>))]
+        internal ExpandableField<Source> InternalSource { get; set; }
         #endregion
 
         [JsonProperty("statement_descriptor")]

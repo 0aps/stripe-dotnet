@@ -25,14 +25,14 @@ namespace Stripe
 
         public override string BasePath => "/v1/subscriptions";
 
-        public virtual Subscription Cancel(string id, SubscriptionCancelOptions options, RequestOptions requestOptions = null)
+        public virtual Subscription Cancel(string id, SubscriptionundefinedOptions options = null, RequestOptions requestOptions = null)
         {
-            return this.DeleteEntity(id, options, requestOptions);
+            return this.Request(HttpMethod.Delete, $"{this.InstanceUrl(id)}", options, requestOptions);
         }
 
-        public virtual Task<Subscription> CancelAsync(string id, SubscriptionCancelOptions options, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<Subscription> CancelAsync(string id, SubscriptionundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
-            return this.DeleteEntityAsync(id, options, requestOptions, cancellationToken);
+            return this.RequestAsync(HttpMethod.Delete, $"{this.InstanceUrl(id)}", options, requestOptions, cancellationToken);
         }
 
         public virtual Subscription Create(SubscriptionCreateOptions options, RequestOptions requestOptions = null)
@@ -43,6 +43,16 @@ namespace Stripe
         public virtual Task<Subscription> CreateAsync(SubscriptionCreateOptions options, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.CreateEntityAsync(options, requestOptions, cancellationToken);
+        }
+
+        public virtual DeletedDiscount DeleteDiscount(string id, SubscriptionundefinedOptions options = null, RequestOptions requestOptions = null)
+        {
+            return this.Request<DeletedDiscount>(HttpMethod.Delete, $"{this.InstanceUrl(id)}/discount", options, requestOptions);
+        }
+
+        public virtual Task<DeletedDiscount> DeleteDiscountAsync(string id, SubscriptionundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return this.RequestAsync<DeletedDiscount>(HttpMethod.Delete, $"{this.InstanceUrl(id)}/discount", options, requestOptions, cancellationToken);
         }
 
         public virtual Subscription Get(string id, SubscriptionGetOptions options = null, RequestOptions requestOptions = null)

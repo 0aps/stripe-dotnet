@@ -8,7 +8,7 @@ namespace Stripe
     public class TopupCreateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("amount")]
-        public long? Amount { get; set; }
+        public long Amount { get; set; }
 
         [JsonProperty("currency")]
         public string Currency { get; set; }
@@ -24,5 +24,8 @@ namespace Stripe
 
         [JsonProperty("statement_descriptor")]
         public string StatementDescriptor { get; set; }
+
+        [JsonProperty("transfer_group")]
+        public string TransferGroup { get; set; }
     }
 }

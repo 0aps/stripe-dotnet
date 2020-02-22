@@ -24,29 +24,11 @@ namespace Stripe
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime? ExpiresAt { get; set; }
 
+        [JsonProperty("file")]
+        public todo-thingy File { get; set; }
+
         [JsonProperty("livemode")]
         public bool Livemode { get; set; }
-
-        #region Expandable File
-
-        [JsonIgnore]
-        public string FileId
-        {
-            get => this.InternalFile?.Id;
-            set => this.InternalFile = SetExpandableFieldId(value, this.InternalFile);
-        }
-
-        [JsonIgnore]
-        public File File
-        {
-            get => this.InternalFile?.ExpandedObject;
-            set => this.InternalFile = SetExpandableFieldObject(value, this.InternalFile);
-        }
-
-        [JsonProperty("file")]
-        [JsonConverter(typeof(ExpandableFieldConverter<File>))]
-        internal ExpandableField<File> InternalFile { get; set; }
-        #endregion
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }

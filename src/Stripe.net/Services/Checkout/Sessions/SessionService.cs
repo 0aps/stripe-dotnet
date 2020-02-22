@@ -8,7 +8,8 @@ namespace Stripe.Checkout
     using Stripe.Infrastructure;
 
     public class SessionService : Service<Session>,
-        ICreatable<Session, SessionCreateOptions>
+        ICreatable<Session, SessionCreateOptions>,
+        IRetrievable<Session, SessionGetOptions>
     {
         public SessionService()
             : base(null)

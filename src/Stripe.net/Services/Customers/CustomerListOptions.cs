@@ -5,9 +5,5 @@ namespace Stripe
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class CustomerListOptions : ListOptionsWithCreated
-    {
-        [JsonProperty("email")]
-        public string Email { get; set; }
-    }
+    public class CustomerListOptions : BaseOptions {}
 }

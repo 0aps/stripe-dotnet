@@ -5,7 +5,5 @@ namespace Stripe.Checkout
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class SessionGetOptions : BaseOptions
-    {
-    }
+    public class SessionGetOptions : BaseOptions {}
 }

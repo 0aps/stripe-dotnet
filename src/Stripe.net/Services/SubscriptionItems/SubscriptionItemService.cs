@@ -80,5 +80,15 @@ namespace Stripe
         {
             return this.UpdateEntityAsync(id, options, requestOptions, cancellationToken);
         }
+
+        public virtual unknown UsageRecordSummaries(string id, SubscriptionItemundefinedOptions options = null, RequestOptions requestOptions = null)
+        {
+            return this.Request<unknown>(HttpMethod.Get, $"{this.InstanceUrl(id)}/usage_record_summaries", options, requestOptions);
+        }
+
+        public virtual Task<unknown> UsageRecordSummariesAsync(string id, SubscriptionItemundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return this.RequestAsync<unknown>(HttpMethod.Get, $"{this.InstanceUrl(id)}/usage_record_summaries", options, requestOptions, cancellationToken);
+        }
     }
 }

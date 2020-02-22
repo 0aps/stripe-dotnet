@@ -17,31 +17,33 @@ namespace Stripe
         public BankAccount ActiveAccount { get; set; }
 
         [JsonProperty("cards")]
-        public StripeList<Card> CardList { get; set; }
+        public StripeList<Card> Cards { get; set; }
 
         [JsonProperty("created")]
         [JsonConverter(typeof(DateTimeConverter))]
         public DateTime Created { get; set; }
 
-        #region Expandable Default Card
+        #region Expandable DefaultCard
         [JsonIgnore]
         public string DefaultCardId
         {
             get => this.InternalDefaultCard?.Id;
             set => this.InternalDefaultCard = SetExpandableFieldId(value, this.InternalDefaultCard);
         }
-
         [JsonIgnore]
-        public Card DefaultCard
+        public DefaultCard DefaultCard
         {
             get => this.InternalDefaultCard?.ExpandedObject;
             set => this.InternalDefaultCard = SetExpandableFieldObject(value, this.InternalDefaultCard);
         }
 
         [JsonProperty("default_card")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Card>))]
-        internal ExpandableField<Card> InternalDefaultCard { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<DefaultCard>))]
+        internal ExpandableField<DefaultCard> InternalDefaultCard { get; set; }
         #endregion
+
+        [JsonProperty("deleted", NullValueHandling=NullValueHandling.Ignore)]
+        public bool? Deleted { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }
@@ -55,14 +57,30 @@ namespace Stripe
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }
 
+        #region Expandable MigratedTo
+        [JsonIgnore]
+        public string MigratedToId
+        {
+            get => this.InternalMigratedTo?.Id;
+            set => this.InternalMigratedTo = SetExpandableFieldId(value, this.InternalMigratedTo);
+        }
+        [JsonIgnore]
+        public MigratedTo MigratedTo
+        {
+            get => this.InternalMigratedTo?.ExpandedObject;
+            set => this.InternalMigratedTo = SetExpandableFieldObject(value, this.InternalMigratedTo);
+        }
+
         [JsonProperty("migrated_to")]
-        public string MigratedTo { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<MigratedTo>))]
+        internal ExpandableField<MigratedTo> InternalMigratedTo { get; set; }
+        #endregion
 
         [JsonProperty("name")]
         public string Name { get; set; }
 
         [JsonProperty("rolled_back_from")]
-        public string RolledBackFrom { get; set; }
+        public todo-thingy RolledBackFrom { get; set; }
 
         [JsonProperty("type")]
         public string Type { get; set; }

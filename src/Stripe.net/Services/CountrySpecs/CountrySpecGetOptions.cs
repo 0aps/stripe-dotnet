@@ -5,7 +5,5 @@ namespace Stripe
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class CountrySpecGetOptions : BaseOptions
-    {
-    }
+    public class CountrySpecGetOptions : BaseOptions {}
 }

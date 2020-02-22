@@ -14,7 +14,7 @@ namespace Stripe.Issuing
         public string Object { get; set; }
 
         [JsonProperty("authorization_controls")]
-        public AuthorizationControls AuthorizationControls { get; set; }
+        public CardAuthorizationControls AuthorizationControls { get; set; }
 
         [JsonProperty("brand")]
         public string Brand { get; set; }
@@ -51,24 +51,27 @@ namespace Stripe.Issuing
         public CardPin Pin { get; set; }
 
         #region Expandable ReplacementFor
-
         [JsonIgnore]
         public string ReplacementForId
         {
             get => this.InternalReplacementFor?.Id;
             set => this.InternalReplacementFor = SetExpandableFieldId(value, this.InternalReplacementFor);
         }
-
         [JsonIgnore]
-        public Card ReplacementFor
+        public ReplacementFor ReplacementFor
         {
             get => this.InternalReplacementFor?.ExpandedObject;
             set => this.InternalReplacementFor = SetExpandableFieldObject(value, this.InternalReplacementFor);
         }
 
         [JsonProperty("replacement_for")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Card>))]
-        internal ExpandableField<Card> InternalReplacementFor { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<ReplacementFor>))]
+        internal ExpandableField<ReplacementFor> InternalReplacementFor
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("replacement_reason")]

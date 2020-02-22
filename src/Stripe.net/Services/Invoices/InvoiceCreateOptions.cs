@@ -8,22 +8,22 @@ namespace Stripe
     public class InvoiceCreateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("application_fee_amount")]
-        public long? ApplicationFeeAmount { get; set; }
+        public long ApplicationFeeAmount { get; set; }
 
         [JsonProperty("auto_advance")]
-        public bool? AutoAdvance { get; set; }
+        public bool AutoAdvance { get; set; }
 
         [JsonProperty("collection_method")]
         public string CollectionMethod { get; set; }
 
         [JsonProperty("custom_fields")]
-        public List<InvoiceCustomFieldOptions> CustomFields { get; set; }
+        public emptyStringable CustomFields { get; set; }
 
         [JsonProperty("customer")]
         public string Customer { get; set; }
 
         [JsonProperty("days_until_due")]
-        public long? DaysUntilDue { get; set; }
+        public long DaysUntilDue { get; set; }
 
         [JsonProperty("default_payment_method")]
         public string DefaultPaymentMethod { get; set; }
@@ -39,7 +39,7 @@ namespace Stripe
 
         [JsonProperty("due_date")]
         [JsonConverter(typeof(DateTimeConverter))]
-        public DateTime? DueDate { get; set; }
+        public DateTime DueDate { get; set; }
 
         [JsonProperty("footer")]
         public string Footer { get; set; }
@@ -53,11 +53,10 @@ namespace Stripe
         [JsonProperty("subscription")]
         public string Subscription { get; set; }
 
-        [Obsolete("Use DefaultTaxRates")]
         [JsonProperty("tax_percent")]
-        public decimal? TaxPercent { get; set; }
+        public decimal TaxPercent { get; set; }
 
         [JsonProperty("transfer_data")]
-        public InvoiceTransferDataOptions TransferData { get; set; }
+        public InvoiceTransferData TransferData { get; set; }
     }
 }

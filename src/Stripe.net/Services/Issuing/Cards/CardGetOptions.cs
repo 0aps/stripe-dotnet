@@ -5,7 +5,5 @@ namespace Stripe.Issuing
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class CardGetOptions : BaseOptions
-    {
-    }
+    public class CardGetOptions : BaseOptions {}
 }

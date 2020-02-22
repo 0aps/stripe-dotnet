@@ -23,14 +23,12 @@ namespace Stripe.Checkout
         public string ClientReferenceId { get; set; }
 
         #region Expandable Customer
-
         [JsonIgnore]
         public string CustomerId
         {
             get => this.InternalCustomer?.Id;
             set => this.InternalCustomer = SetExpandableFieldId(value, this.InternalCustomer);
         }
-
         [JsonIgnore]
         public Customer Customer
         {
@@ -62,14 +60,12 @@ namespace Stripe.Checkout
         public string Mode { get; set; }
 
         #region Expandable PaymentIntent
-
         [JsonIgnore]
         public string PaymentIntentId
         {
             get => this.InternalPaymentIntent?.Id;
             set => this.InternalPaymentIntent = SetExpandableFieldId(value, this.InternalPaymentIntent);
         }
-
         [JsonIgnore]
         public PaymentIntent PaymentIntent
         {
@@ -79,21 +75,24 @@ namespace Stripe.Checkout
 
         [JsonProperty("payment_intent")]
         [JsonConverter(typeof(ExpandableFieldConverter<PaymentIntent>))]
-        internal ExpandableField<PaymentIntent> InternalPaymentIntent { get; set; }
+        internal ExpandableField<PaymentIntent> InternalPaymentIntent
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("payment_method_types")]
         public List<string> PaymentMethodTypes { get; set; }
 
         #region Expandable SetupIntent
-
         [JsonIgnore]
         public string SetupIntentId
         {
             get => this.InternalSetupIntent?.Id;
             set => this.InternalSetupIntent = SetExpandableFieldId(value, this.InternalSetupIntent);
         }
-
         [JsonIgnore]
         public SetupIntent SetupIntent
         {
@@ -106,15 +105,16 @@ namespace Stripe.Checkout
         internal ExpandableField<SetupIntent> InternalSetupIntent { get; set; }
         #endregion
 
-        #region Expandable Subscription
+        [JsonProperty("submit_type")]
+        public string SubmitType { get; set; }
 
+        #region Expandable Subscription
         [JsonIgnore]
         public string SubscriptionId
         {
             get => this.InternalSubscription?.Id;
             set => this.InternalSubscription = SetExpandableFieldId(value, this.InternalSubscription);
         }
-
         [JsonIgnore]
         public Subscription Subscription
         {
@@ -124,11 +124,13 @@ namespace Stripe.Checkout
 
         [JsonProperty("subscription")]
         [JsonConverter(typeof(ExpandableFieldConverter<Subscription>))]
-        internal ExpandableField<Subscription> InternalSubscription { get; set; }
-        #endregion
+        internal ExpandableField<Subscription> InternalSubscription
+        {
+            get;
+            set;
 
-        [JsonProperty("submit_type")]
-        public string SubmitType { get; set; }
+        }
+        #endregion
 
         [JsonProperty("success_url")]
         public string SuccessUrl { get; set; }

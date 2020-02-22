@@ -24,20 +24,18 @@ namespace Stripe
         public string Currency { get; set; }
 
         [JsonProperty("items")]
-        public List<OrderItem> OrderItems { get; set; }
+        public List<OrderItem> Items { get; set; }
 
         [JsonProperty("livemode")]
         public bool Livemode { get; set; }
 
         #region Expandable Order
-
         [JsonIgnore]
         public string OrderId
         {
             get => this.InternalOrder?.Id;
             set => this.InternalOrder = SetExpandableFieldId(value, this.InternalOrder);
         }
-
         [JsonIgnore]
         public Order Order
         {
@@ -51,10 +49,12 @@ namespace Stripe
         #endregion
 
         #region Expandable Refund
-
         [JsonIgnore]
-        public string RefundId { get; set; }
-
+        public string RefundId
+        {
+            get => this.InternalRefund?.Id;
+            set => this.InternalRefund = SetExpandableFieldId(value, this.InternalRefund);
+        }
         [JsonIgnore]
         public Refund Refund
         {

@@ -8,7 +8,7 @@ namespace Stripe
     public class PlanUpdateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("active")]
-        public bool? Active { get; set; }
+        public bool Active { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }
@@ -20,6 +20,6 @@ namespace Stripe
         public string Product { get; set; }
 
         [JsonProperty("trial_period_days")]
-        public long? TrialPeriodDays { get; set; }
+        public long TrialPeriodDays { get; set; }
     }
 }

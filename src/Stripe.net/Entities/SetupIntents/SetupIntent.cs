@@ -14,14 +14,12 @@ namespace Stripe
         public string Object { get; set; }
 
         #region Expandable Application
-
         [JsonIgnore]
         public string ApplicationId
         {
             get => this.InternalApplication?.Id;
             set => this.InternalApplication = SetExpandableFieldId(value, this.InternalApplication);
         }
-
         [JsonIgnore]
         public Application Application
         {
@@ -45,14 +43,12 @@ namespace Stripe
         public DateTime Created { get; set; }
 
         #region Expandable Customer
-
         [JsonIgnore]
         public string CustomerId
         {
             get => this.InternalCustomer?.Id;
             set => this.InternalCustomer = SetExpandableFieldId(value, this.InternalCustomer);
         }
-
         [JsonIgnore]
         public Customer Customer
         {
@@ -69,20 +65,18 @@ namespace Stripe
         public string Description { get; set; }
 
         [JsonProperty("last_setup_error")]
-        public StripeError LastSetupError { get; set; }
+        public SetupIntentLastSetupError LastSetupError { get; set; }
 
         [JsonProperty("livemode")]
         public bool Livemode { get; set; }
 
         #region Expandable Mandate
-
         [JsonIgnore]
         public string MandateId
         {
             get => this.InternalMandate?.Id;
             set => this.InternalMandate = SetExpandableFieldId(value, this.InternalMandate);
         }
-
         [JsonIgnore]
         public Mandate Mandate
         {
@@ -101,36 +95,32 @@ namespace Stripe
         [JsonProperty("next_action")]
         public SetupIntentNextAction NextAction { get; set; }
 
-        #region Expandable OnBehalfOf (Account)
-
+        #region Expandable OnBehalfOf
         [JsonIgnore]
         public string OnBehalfOfId
         {
             get => this.InternalOnBehalfOf?.Id;
             set => this.InternalOnBehalfOf = SetExpandableFieldId(value, this.InternalOnBehalfOf);
         }
-
         [JsonIgnore]
-        public Account OnBehalfOf
+        public OnBehalfOf OnBehalfOf
         {
             get => this.InternalOnBehalfOf?.ExpandedObject;
             set => this.InternalOnBehalfOf = SetExpandableFieldObject(value, this.InternalOnBehalfOf);
         }
 
         [JsonProperty("on_behalf_of")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Account>))]
-        internal ExpandableField<Account> InternalOnBehalfOf { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<OnBehalfOf>))]
+        internal ExpandableField<OnBehalfOf> InternalOnBehalfOf { get; set; }
         #endregion
 
         #region Expandable PaymentMethod
-
         [JsonIgnore]
         public string PaymentMethodId
         {
             get => this.InternalPaymentMethod?.Id;
             set => this.InternalPaymentMethod = SetExpandableFieldId(value, this.InternalPaymentMethod);
         }
-
         [JsonIgnore]
         public PaymentMethod PaymentMethod
         {
@@ -140,34 +130,47 @@ namespace Stripe
 
         [JsonProperty("payment_method")]
         [JsonConverter(typeof(ExpandableFieldConverter<PaymentMethod>))]
-        internal ExpandableField<PaymentMethod> InternalPaymentMethod { get; set; }
+        internal ExpandableField<PaymentMethod> InternalPaymentMethod
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("payment_method_options")]
-        public SetupIntentPaymentMethodOptions PaymentMethodOptions { get; set; }
+        public SetupIntentPaymentMethodOptions PaymentMethodOptions
+        {
+            get;
+            set;
+
+        }
 
         [JsonProperty("payment_method_types")]
         public List<string> PaymentMethodTypes { get; set; }
 
         #region Expandable SingleUseMandate
-
         [JsonIgnore]
         public string SingleUseMandateId
         {
             get => this.InternalSingleUseMandate?.Id;
             set => this.InternalSingleUseMandate = SetExpandableFieldId(value, this.InternalSingleUseMandate);
         }
-
         [JsonIgnore]
-        public Mandate SingleUseMandate
+        public SingleUseMandate SingleUseMandate
         {
             get => this.InternalSingleUseMandate?.ExpandedObject;
             set => this.InternalSingleUseMandate = SetExpandableFieldObject(value, this.InternalSingleUseMandate);
         }
 
         [JsonProperty("single_use_mandate")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Mandate>))]
-        internal ExpandableField<Mandate> InternalSingleUseMandate { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<SingleUseMandate>))]
+        internal ExpandableField<SingleUseMandate> InternalSingleUseMandate
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("status")]

@@ -60,22 +60,22 @@ namespace Stripe
             return this.ListEntitiesAutoPaging(options, requestOptions);
         }
 
-        public virtual Order Pay(string id, OrderPayOptions options = null, RequestOptions requestOptions = null)
+        public virtual Order Pay(string id, OrderundefinedOptions options = null, RequestOptions requestOptions = null)
         {
             return this.Request(HttpMethod.Post, $"{this.InstanceUrl(id)}/pay", options, requestOptions);
         }
 
-        public virtual Task<Order> PayAsync(string id, OrderPayOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<Order> PayAsync(string id, OrderundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.RequestAsync(HttpMethod.Post, $"{this.InstanceUrl(id)}/pay", options, requestOptions, cancellationToken);
         }
 
-        public virtual OrderReturn Return(string id, OrderReturnOptions options = null, RequestOptions requestOptions = null)
+        public virtual OrderReturn ReturnOrder(string id, OrderundefinedOptions options = null, RequestOptions requestOptions = null)
         {
             return this.Request<OrderReturn>(HttpMethod.Post, $"{this.InstanceUrl(id)}/returns", options, requestOptions);
         }
 
-        public virtual Task<OrderReturn> ReturnAsync(string id, OrderReturnOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<OrderReturn> ReturnOrderAsync(string id, OrderundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.RequestAsync<OrderReturn>(HttpMethod.Post, $"{this.InstanceUrl(id)}/returns", options, requestOptions, cancellationToken);
         }

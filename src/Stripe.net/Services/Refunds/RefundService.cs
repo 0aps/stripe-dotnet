@@ -45,6 +45,31 @@ namespace Stripe
             return this.GetEntityAsync(id, options, requestOptions, cancellationToken);
         }
 
+        public virtual Refund Get(string id, RefundGetOptions options = null, RequestOptions requestOptions = null)
+        {
+            return this.GetEntity(id, options, requestOptions);
+        }
+
+        public virtual Task<Refund> GetAsync(string id, RefundGetOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return this.GetEntityAsync(id, options, requestOptions, cancellationToken);
+        }
+
+        public virtual StripeList<Refund> List(RefundListOptions options = null, RequestOptions requestOptions = null)
+        {
+            return this.ListEntities(options, requestOptions);
+        }
+
+        public virtual Task<StripeList<Refund>> ListAsync(RefundListOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        {
+            return this.ListEntitiesAsync(options, requestOptions, cancellationToken);
+        }
+
+        public virtual IEnumerable<Refund> ListAutoPaging(RefundListOptions options = null, RequestOptions requestOptions = null)
+        {
+            return this.ListEntitiesAutoPaging(options, requestOptions);
+        }
+
         public virtual StripeList<Refund> List(RefundListOptions options = null, RequestOptions requestOptions = null)
         {
             return this.ListEntities(options, requestOptions);

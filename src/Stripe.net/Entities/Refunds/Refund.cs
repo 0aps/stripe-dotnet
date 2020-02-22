@@ -5,7 +5,7 @@ namespace Stripe
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class Refund : StripeEntity<Refund>, IHasId, IHasMetadata, IHasObject, IBalanceTransactionSource
+    public class Refund : StripeEntity<Refund>, IHasId, IHasMetadata, IHasObject
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -16,14 +16,13 @@ namespace Stripe
         [JsonProperty("amount")]
         public long Amount { get; set; }
 
-        #region Expandable Balance Transaction
+        #region Expandable BalanceTransaction
         [JsonIgnore]
         public string BalanceTransactionId
         {
             get => this.InternalBalanceTransaction?.Id;
             set => this.InternalBalanceTransaction = SetExpandableFieldId(value, this.InternalBalanceTransaction);
         }
-
         [JsonIgnore]
         public BalanceTransaction BalanceTransaction
         {
@@ -33,7 +32,12 @@ namespace Stripe
 
         [JsonProperty("balance_transaction")]
         [JsonConverter(typeof(ExpandableFieldConverter<BalanceTransaction>))]
-        internal ExpandableField<BalanceTransaction> InternalBalanceTransaction { get; set; }
+        internal ExpandableField<BalanceTransaction> InternalBalanceTransaction
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         #region Expandable Charge
@@ -43,7 +47,6 @@ namespace Stripe
             get => this.InternalCharge?.Id;
             set => this.InternalCharge = SetExpandableFieldId(value, this.InternalCharge);
         }
-
         [JsonIgnore]
         public Charge Charge
         {
@@ -66,25 +69,8 @@ namespace Stripe
         [JsonProperty("description")]
         public string Description { get; set; }
 
-        #region Expandable Failure Balance Transaction
-        [JsonIgnore]
-        public string FailureBalanceTransactionId
-        {
-            get => this.InternalFailureBalanceTransaction?.Id;
-            set => this.InternalFailureBalanceTransaction = SetExpandableFieldId(value, this.InternalFailureBalanceTransaction);
-        }
-
-        [JsonIgnore]
-        public BalanceTransaction FailureBalanceTransaction
-        {
-            get => this.InternalFailureBalanceTransaction?.ExpandedObject;
-            set => this.InternalFailureBalanceTransaction = SetExpandableFieldObject(value, this.InternalFailureBalanceTransaction);
-        }
-
         [JsonProperty("failure_balance_transaction")]
-        [JsonConverter(typeof(ExpandableFieldConverter<BalanceTransaction>))]
-        internal ExpandableField<BalanceTransaction> InternalFailureBalanceTransaction { get; set; }
-        #endregion
+        public todo-thingy FailureBalanceTransaction { get; set; }
 
         [JsonProperty("failure_reason")]
         public string FailureReason { get; set; }
@@ -99,7 +85,6 @@ namespace Stripe
             get => this.InternalPaymentIntent?.Id;
             set => this.InternalPaymentIntent = SetExpandableFieldId(value, this.InternalPaymentIntent);
         }
-
         [JsonIgnore]
         public PaymentIntent PaymentIntent
         {
@@ -109,7 +94,12 @@ namespace Stripe
 
         [JsonProperty("payment_intent")]
         [JsonConverter(typeof(ExpandableFieldConverter<PaymentIntent>))]
-        internal ExpandableField<PaymentIntent> InternalPaymentIntent { get; set; }
+        internal ExpandableField<PaymentIntent> InternalPaymentIntent
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("reason")]
@@ -118,37 +108,42 @@ namespace Stripe
         [JsonProperty("receipt_number")]
         public string ReceiptNumber { get; set; }
 
-        #region Expandable Source Transfer Reversal
+        #region Expandable SourceTransferReversal
         [JsonIgnore]
         public string SourceTransferReversalId
         {
             get => this.InternalSourceTransferReversal?.Id;
             set => this.InternalSourceTransferReversal = SetExpandableFieldId(value, this.InternalSourceTransferReversal);
         }
-
         [JsonIgnore]
-        public TransferReversal SourceTransferReversal
+        public SourceTransferReversal SourceTransferReversal
         {
             get => this.InternalSourceTransferReversal?.ExpandedObject;
             set => this.InternalSourceTransferReversal = SetExpandableFieldObject(value, this.InternalSourceTransferReversal);
         }
 
         [JsonProperty("source_transfer_reversal")]
-        [JsonConverter(typeof(ExpandableFieldConverter<TransferReversal>))]
-        internal ExpandableField<TransferReversal> InternalSourceTransferReversal { get; set; }
+        [JsonConverter(
+            typeof(ExpandableFieldConverter<SourceTransferReversal>)
+        )]
+        internal ExpandableField<SourceTransferReversal> InternalSourceTransferReversal
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("status")]
         public string Status { get; set; }
 
-        #region Expandable  Transfer Reversal
+        #region Expandable TransferReversal
         [JsonIgnore]
         public string TransferReversalId
         {
             get => this.InternalTransferReversal?.Id;
             set => this.InternalTransferReversal = SetExpandableFieldId(value, this.InternalTransferReversal);
         }
-
         [JsonIgnore]
         public TransferReversal TransferReversal
         {
@@ -158,7 +153,12 @@ namespace Stripe
 
         [JsonProperty("transfer_reversal")]
         [JsonConverter(typeof(ExpandableFieldConverter<TransferReversal>))]
-        internal ExpandableField<TransferReversal> InternalTransferReversal { get; set; }
+        internal ExpandableField<TransferReversal> InternalTransferReversal
+        {
+            get;
+            set;
+
+        }
         #endregion
     }
 }

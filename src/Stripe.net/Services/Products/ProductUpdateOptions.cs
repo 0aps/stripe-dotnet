@@ -8,10 +8,10 @@ namespace Stripe
     public class ProductUpdateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("active")]
-        public bool? Active { get; set; }
+        public bool Active { get; set; }
 
         [JsonProperty("attributes")]
-        public List<string> Attributes { get; set; }
+        public emptyStringable Attributes { get; set; }
 
         [JsonProperty("caption")]
         public string Caption { get; set; }
@@ -23,7 +23,7 @@ namespace Stripe
         public string Description { get; set; }
 
         [JsonProperty("images")]
-        public List<string> Images { get; set; }
+        public emptyStringable Images { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }
@@ -32,10 +32,10 @@ namespace Stripe
         public string Name { get; set; }
 
         [JsonProperty("package_dimensions")]
-        public PackageDimensionOptions PackageDimensions { get; set; }
+        public emptyStringable PackageDimensions { get; set; }
 
         [JsonProperty("shippable")]
-        public bool? Shippable { get; set; }
+        public bool Shippable { get; set; }
 
         [JsonProperty("statement_descriptor")]
         public string StatementDescriptor { get; set; }

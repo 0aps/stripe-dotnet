@@ -5,7 +5,5 @@ namespace Stripe.Radar
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class ValueListItemGetOptions : BaseOptions
-    {
-    }
+    public class ValueListItemGetOptions : BaseOptions {}
 }

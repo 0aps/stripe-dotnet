@@ -11,13 +11,13 @@ namespace Stripe
         public string AccountToken { get; set; }
 
         [JsonProperty("business_profile")]
-        public AccountBusinessProfileOptions BusinessProfile { get; set; }
+        public AccountBusinessProfile BusinessProfile { get; set; }
 
         [JsonProperty("business_type")]
         public string BusinessType { get; set; }
 
         [JsonProperty("company")]
-        public AccountCompanyOptions Company { get; set; }
+        public AccountCompany Company { get; set; }
 
         [JsonProperty("default_currency")]
         public string DefaultCurrency { get; set; }
@@ -26,11 +26,10 @@ namespace Stripe
         public string Email { get; set; }
 
         [JsonProperty("external_account")]
-        [JsonConverter(typeof(AnyOfConverter))]
-        public AnyOf<string, AccountBankAccountOptions, AccountCardOptions> ExternalAccount { get; set; }
+        public string ExternalAccount { get; set; }
 
         [JsonProperty("individual")]
-        public PersonUpdateOptions Individual { get; set; }
+        public AccountIndividual Individual { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }
@@ -39,9 +38,9 @@ namespace Stripe
         public List<string> RequestedCapabilities { get; set; }
 
         [JsonProperty("settings")]
-        public AccountSettingsOptions Settings { get; set; }
+        public AccountSettings Settings { get; set; }
 
         [JsonProperty("tos_acceptance")]
-        public AccountTosAcceptanceOptions TosAcceptance { get; set; }
+        public AccountTosAcceptance TosAcceptance { get; set; }
     }
 }

@@ -8,28 +8,30 @@ namespace Stripe.Issuing
     public class CardholderUpdateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("authorization_controls")]
-        public CardholderAuthorizationControlsOptions AuthorizationControls { get; set; }
+        public CardholderAuthorizationControls AuthorizationControls
+        {
+            get;
+            set;
+
+        }
 
         [JsonProperty("billing")]
-        public BillingOptions Billing { get; set; }
+        public CardholderBilling Billing { get; set; }
 
         [JsonProperty("company")]
-        public CardholderCompanyOptions Company { get; set; }
+        public CardholderCompany Company { get; set; }
 
         [JsonProperty("email")]
         public string Email { get; set; }
 
         [JsonProperty("individual")]
-        public CardholderIndividualOptions Individual { get; set; }
+        public CardholderIndividual Individual { get; set; }
 
         [JsonProperty("is_default")]
-        public bool? IsDefault { get; set; }
+        public bool IsDefault { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }
-
-        [JsonProperty("name")]
-        public string Name { get; set; }
 
         [JsonProperty("phone_number")]
         public string PhoneNumber { get; set; }

@@ -8,7 +8,7 @@ namespace Stripe
     public class TaxRateCreateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("active")]
-        public bool? Active { get; set; }
+        public bool Active { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }
@@ -17,7 +17,7 @@ namespace Stripe
         public string DisplayName { get; set; }
 
         [JsonProperty("inclusive")]
-        public bool? Inclusive { get; set; }
+        public bool Inclusive { get; set; }
 
         [JsonProperty("jurisdiction")]
         public string Jurisdiction { get; set; }
@@ -26,6 +26,6 @@ namespace Stripe
         public Dictionary<string, string> Metadata { get; set; }
 
         [JsonProperty("percentage")]
-        public decimal? Percentage { get; set; }
+        public decimal Percentage { get; set; }
     }
 }

@@ -22,26 +22,8 @@ namespace Stripe
         [JsonProperty("multi_use")]
         public MandateMultiUse MultiUse { get; set; }
 
-        #region Expandable PaymentMethod
-
-        [JsonIgnore]
-        public string PaymentMethodId
-        {
-            get => this.InternalPaymentMethod?.Id;
-            set => this.InternalPaymentMethod = SetExpandableFieldId(value, this.InternalPaymentMethod);
-        }
-
-        [JsonIgnore]
-        public PaymentMethod PaymentMethod
-        {
-            get => this.InternalPaymentMethod?.ExpandedObject;
-            set => this.InternalPaymentMethod = SetExpandableFieldObject(value, this.InternalPaymentMethod);
-        }
-
         [JsonProperty("payment_method")]
-        [JsonConverter(typeof(ExpandableFieldConverter<PaymentMethod>))]
-        internal ExpandableField<PaymentMethod> InternalPaymentMethod { get; set; }
-        #endregion
+        public todo-thingy PaymentMethod { get; set; }
 
         [JsonProperty("payment_method_details")]
         public MandatePaymentMethodDetails PaymentMethodDetails { get; set; }

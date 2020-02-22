@@ -5,7 +5,7 @@ namespace Stripe
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class Transfer : StripeEntity<Transfer>, IHasId, IHasMetadata, IHasObject, IBalanceTransactionSource
+    public class Transfer : StripeEntity<Transfer>, IHasId, IHasMetadata, IHasObject
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -19,14 +19,13 @@ namespace Stripe
         [JsonProperty("amount_reversed")]
         public long AmountReversed { get; set; }
 
-        #region Expandable Balance Transaction
+        #region Expandable BalanceTransaction
         [JsonIgnore]
         public string BalanceTransactionId
         {
             get => this.InternalBalanceTransaction?.Id;
             set => this.InternalBalanceTransaction = SetExpandableFieldId(value, this.InternalBalanceTransaction);
         }
-
         [JsonIgnore]
         public BalanceTransaction BalanceTransaction
         {
@@ -36,7 +35,12 @@ namespace Stripe
 
         [JsonProperty("balance_transaction")]
         [JsonConverter(typeof(ExpandableFieldConverter<BalanceTransaction>))]
-        internal ExpandableField<BalanceTransaction> InternalBalanceTransaction { get; set; }
+        internal ExpandableField<BalanceTransaction> InternalBalanceTransaction
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("created")]
@@ -56,38 +60,20 @@ namespace Stripe
             get => this.InternalDestination?.Id;
             set => this.InternalDestination = SetExpandableFieldId(value, this.InternalDestination);
         }
-
         [JsonIgnore]
-        public Account Destination
+        public Destination Destination
         {
             get => this.InternalDestination?.ExpandedObject;
             set => this.InternalDestination = SetExpandableFieldObject(value, this.InternalDestination);
         }
 
         [JsonProperty("destination")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Account>))]
-        internal ExpandableField<Account> InternalDestination { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<Destination>))]
+        internal ExpandableField<Destination> InternalDestination { get; set; }
         #endregion
-
-        #region Expandable Destination Payment
-        [JsonIgnore]
-        public string DestinationPaymentId
-        {
-            get => this.InternalDestinationPayment?.Id;
-            set => this.InternalDestinationPayment = SetExpandableFieldId(value, this.InternalDestinationPayment);
-        }
-
-        [JsonIgnore]
-        public Charge DestinationPayment
-        {
-            get => this.InternalDestinationPayment?.ExpandedObject;
-            set => this.InternalDestinationPayment = SetExpandableFieldObject(value, this.InternalDestinationPayment);
-        }
 
         [JsonProperty("destination_payment")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Charge>))]
-        internal ExpandableField<Charge> InternalDestinationPayment { get; set; }
-        #endregion
+        public todo-thingy DestinationPayment { get; set; }
 
         [JsonProperty("livemode")]
         public bool Livemode { get; set; }
@@ -101,24 +87,28 @@ namespace Stripe
         [JsonProperty("reversed")]
         public bool Reversed { get; set; }
 
-        #region Expandable Source Transaction
+        #region Expandable SourceTransaction
         [JsonIgnore]
         public string SourceTransactionId
         {
             get => this.InternalSourceTransaction?.Id;
             set => this.InternalSourceTransaction = SetExpandableFieldId(value, this.InternalSourceTransaction);
         }
-
         [JsonIgnore]
-        public Charge SourceTransaction
+        public SourceTransaction SourceTransaction
         {
             get => this.InternalSourceTransaction?.ExpandedObject;
             set => this.InternalSourceTransaction = SetExpandableFieldObject(value, this.InternalSourceTransaction);
         }
 
         [JsonProperty("source_transaction")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Charge>))]
-        internal ExpandableField<Charge> InternalSourceTransaction { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<SourceTransaction>))]
+        internal ExpandableField<SourceTransaction> InternalSourceTransaction
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("source_type")]

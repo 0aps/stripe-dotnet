@@ -11,15 +11,15 @@ namespace Stripe
         public string Object { get; set; }
 
         [JsonProperty("available")]
-        public List<BalanceAmount> Available { get; set; }
+        public List<BalanceAvailable> Available { get; set; }
 
         [JsonProperty("connect_reserved")]
-        public List<BalanceAmount> ConnectReserved { get; set; }
+        public List<BalanceConnectReserved> ConnectReserved { get; set; }
 
         [JsonProperty("livemode")]
         public bool Livemode { get; set; }
 
         [JsonProperty("pending")]
-        public List<BalanceAmount> Pending { get; set; }
+        public List<BalancePending> Pending { get; set; }
     }
 }

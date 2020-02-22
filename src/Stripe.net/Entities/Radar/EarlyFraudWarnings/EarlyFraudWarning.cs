@@ -16,26 +16,8 @@ namespace Stripe.Radar
         [JsonProperty("actionable")]
         public bool Actionable { get; set; }
 
-        #region Expandable Charge
-
-        [JsonIgnore]
-        public string ChargeId
-        {
-            get => this.InternalCharge?.Id;
-            set => this.InternalCharge = SetExpandableFieldId(value, this.InternalCharge);
-        }
-
-        [JsonIgnore]
-        public Charge Charge
-        {
-            get => this.InternalCharge?.ExpandedObject;
-            set => this.InternalCharge = SetExpandableFieldObject(value, this.InternalCharge);
-        }
-
         [JsonProperty("charge")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Charge>))]
-        internal ExpandableField<Charge> InternalCharge { get; set; }
-        #endregion
+        public todo-thingy Charge { get; set; }
 
         [JsonProperty("created")]
         [JsonConverter(typeof(DateTimeConverter))]

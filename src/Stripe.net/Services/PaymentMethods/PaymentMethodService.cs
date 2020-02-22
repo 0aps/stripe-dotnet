@@ -25,12 +25,12 @@ namespace Stripe
 
         public override string BasePath => "/v1/payment_methods";
 
-        public virtual PaymentMethod Attach(string id, PaymentMethodAttachOptions options, RequestOptions requestOptions = null)
+        public virtual PaymentMethod Attach(string id, PaymentMethodundefinedOptions options = null, RequestOptions requestOptions = null)
         {
             return this.Request(HttpMethod.Post, $"{this.InstanceUrl(id)}/attach", options, requestOptions);
         }
 
-        public virtual Task<PaymentMethod> AttachAsync(string id, PaymentMethodAttachOptions options, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<PaymentMethod> AttachAsync(string id, PaymentMethodundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.RequestAsync(HttpMethod.Post, $"{this.InstanceUrl(id)}/attach", options, requestOptions, cancellationToken);
         }
@@ -45,12 +45,12 @@ namespace Stripe
             return this.CreateEntityAsync(options, requestOptions, cancellationToken);
         }
 
-        public virtual PaymentMethod Detach(string id, PaymentMethodDetachOptions options = null, RequestOptions requestOptions = null)
+        public virtual PaymentMethod Detach(string id, PaymentMethodundefinedOptions options = null, RequestOptions requestOptions = null)
         {
             return this.Request(HttpMethod.Post, $"{this.InstanceUrl(id)}/detach", options, requestOptions);
         }
 
-        public virtual Task<PaymentMethod> DetachAsync(string id, PaymentMethodDetachOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
+        public virtual Task<PaymentMethod> DetachAsync(string id, PaymentMethodundefinedOptions options = null, RequestOptions requestOptions = null, CancellationToken cancellationToken = default(CancellationToken))
         {
             return this.RequestAsync(HttpMethod.Post, $"{this.InstanceUrl(id)}/detach", options, requestOptions, cancellationToken);
         }

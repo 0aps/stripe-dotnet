@@ -11,7 +11,12 @@ namespace Stripe
         public string Customer { get; set; }
 
         [JsonProperty("default_settings")]
-        public SubscriptionScheduleDefaultSettingsOptions DefaultSettings { get; set; }
+        public SubscriptionScheduleDefaultSettings DefaultSettings
+        {
+            get;
+            set;
+
+        }
 
         [JsonProperty("end_behavior")]
         public string EndBehavior { get; set; }
@@ -19,17 +24,13 @@ namespace Stripe
         [JsonProperty("from_subscription")]
         public string FromSubscription { get; set; }
 
-        [JsonProperty("invoice_settings")]
-        public SubscriptionScheduleInvoiceSettingsOptions InvoiceSettings { get; set; }
-
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }
 
         [JsonProperty("phases")]
-        public List<SubscriptionSchedulePhaseOptions> Phases { get; set; }
+        public List<SubscriptionSchedulePhase> Phases { get; set; }
 
         [JsonProperty("start_date")]
-        [JsonConverter(typeof(AnyOfConverter))]
-        public AnyOf<DateTime?, SubscriptionScheduleStartDate> StartDate { get; set; }
+        public todo-thingy StartDate { get; set; }
     }
 }

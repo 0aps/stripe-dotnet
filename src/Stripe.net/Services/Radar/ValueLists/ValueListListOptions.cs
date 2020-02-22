@@ -5,12 +5,5 @@ namespace Stripe.Radar
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class ValueListListOptions : ListOptionsWithCreated
-    {
-        [JsonProperty("alias")]
-        public string Alias { get; set; }
-
-        [JsonProperty("contains")]
-        public string Contains { get; set; }
-    }
+    public class ValueListListOptions : BaseOptions {}
 }

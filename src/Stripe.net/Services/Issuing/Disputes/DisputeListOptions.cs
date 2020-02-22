@@ -5,9 +5,5 @@ namespace Stripe.Issuing
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class DisputeListOptions : ListOptionsWithCreated
-    {
-        [JsonProperty("transaction")]
-        public string Transaction { get; set; }
-    }
+    public class DisputeListOptions : BaseOptions {}
 }

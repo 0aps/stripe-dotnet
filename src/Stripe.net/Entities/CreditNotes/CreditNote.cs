@@ -23,36 +23,16 @@ namespace Stripe
         [JsonProperty("currency")]
         public string Currency { get; set; }
 
-        #region Expandable Customer
-
-        [JsonIgnore]
-        public string CustomerId
-        {
-            get => this.InternalCustomer?.Id;
-            set => this.InternalCustomer = SetExpandableFieldId(value, this.InternalCustomer);
-        }
-
-        [JsonIgnore]
-        public Customer Customer
-        {
-            get => this.InternalCustomer?.ExpandedObject;
-            set => this.InternalCustomer = SetExpandableFieldObject(value, this.InternalCustomer);
-        }
-
         [JsonProperty("customer")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Customer>))]
-        internal ExpandableField<Customer> InternalCustomer { get; set; }
-        #endregion
+        public todo-thingy Customer { get; set; }
 
         #region Expandable CustomerBalanceTransaction
-
         [JsonIgnore]
         public string CustomerBalanceTransactionId
         {
             get => this.InternalCustomerBalanceTransaction?.Id;
             set => this.InternalCustomerBalanceTransaction = SetExpandableFieldId(value, this.InternalCustomerBalanceTransaction);
         }
-
         [JsonIgnore]
         public CustomerBalanceTransaction CustomerBalanceTransaction
         {
@@ -61,33 +41,22 @@ namespace Stripe
         }
 
         [JsonProperty("customer_balance_transaction")]
-        [JsonConverter(typeof(ExpandableFieldConverter<CustomerBalanceTransaction>))]
-        internal ExpandableField<CustomerBalanceTransaction> InternalCustomerBalanceTransaction { get; set; }
+        [JsonConverter(
+            typeof(ExpandableFieldConverter<CustomerBalanceTransaction>)
+        )]
+        internal ExpandableField<CustomerBalanceTransaction> InternalCustomerBalanceTransaction
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("discount_amount")]
         public long DiscountAmount { get; set; }
 
-        #region Expandable Invoice
-
-        [JsonIgnore]
-        public string InvoiceId
-        {
-            get => this.InternalInvoice?.Id;
-            set => this.InternalInvoice = SetExpandableFieldId(value, this.InternalInvoice);
-        }
-
-        [JsonIgnore]
-        public Invoice Invoice
-        {
-            get => this.InternalInvoice?.ExpandedObject;
-            set => this.InternalInvoice = SetExpandableFieldObject(value, this.InternalInvoice);
-        }
-
         [JsonProperty("invoice")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Invoice>))]
-        internal ExpandableField<Invoice> InternalInvoice { get; set; }
-        #endregion
+        public todo-thingy Invoice { get; set; }
 
         [JsonProperty("lines")]
         public StripeList<CreditNoteLineItem> Lines { get; set; }
@@ -114,14 +83,12 @@ namespace Stripe
         public string Reason { get; set; }
 
         #region Expandable Refund
-
         [JsonIgnore]
         public string RefundId
         {
             get => this.InternalRefund?.Id;
             set => this.InternalRefund = SetExpandableFieldId(value, this.InternalRefund);
         }
-
         [JsonIgnore]
         public Refund Refund
         {

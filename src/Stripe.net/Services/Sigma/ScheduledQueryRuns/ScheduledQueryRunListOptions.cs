@@ -5,7 +5,5 @@ namespace Stripe.Sigma
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class ScheduledQueryRunListOptions : ListOptions
-    {
-    }
+    public class ScheduledQueryRunListOptions : BaseOptions {}
 }

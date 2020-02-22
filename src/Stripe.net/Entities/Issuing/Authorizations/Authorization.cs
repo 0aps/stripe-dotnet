@@ -5,7 +5,7 @@ namespace Stripe.Issuing
     using Newtonsoft.Json;
     using Stripe.Infrastructure;
 
-    public class Authorization : StripeEntity<Authorization>, IHasId, IHasMetadata, IHasObject, IBalanceTransactionSource
+    public class Authorization : StripeEntity<Authorization>, IHasId, IHasMetadata, IHasObject
     {
         [JsonProperty("id")]
         public string Id { get; set; }
@@ -38,7 +38,6 @@ namespace Stripe.Issuing
             get => this.InternalCardholder?.Id;
             set => this.InternalCardholder = SetExpandableFieldId(value, this.InternalCardholder);
         }
-
         [JsonIgnore]
         public Cardholder Cardholder
         {
@@ -68,7 +67,7 @@ namespace Stripe.Issuing
         public bool Livemode { get; set; }
 
         [JsonProperty("merchant_data")]
-        public MerchantData MerchantData { get; set; }
+        public AuthorizationMerchantData MerchantData { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }
@@ -80,7 +79,7 @@ namespace Stripe.Issuing
         public long PendingHeldAmount { get; set; }
 
         [JsonProperty("request_history")]
-        public List<RequestHistory> RequestHistory { get; set; }
+        public List<AuthorizationRequestHistory> RequestHistory { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; }
@@ -89,7 +88,7 @@ namespace Stripe.Issuing
         public List<Transaction> Transactions { get; set; }
 
         [JsonProperty("verification_data")]
-        public VerificationData VerificationData { get; set; }
+        public AuthorizationVerificationData VerificationData { get; set; }
 
         [JsonProperty("wallet_provider")]
         public string WalletProvider { get; set; }

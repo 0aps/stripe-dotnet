@@ -8,7 +8,7 @@ namespace Stripe
     public class SkuUpdateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("active")]
-        public bool? Active { get; set; }
+        public bool Active { get; set; }
 
         [JsonProperty("attributes")]
         public Dictionary<string, string> Attributes { get; set; }
@@ -20,16 +20,16 @@ namespace Stripe
         public string Image { get; set; }
 
         [JsonProperty("inventory")]
-        public InventoryOptions Inventory { get; set; }
+        public SkuInventory Inventory { get; set; }
 
         [JsonProperty("metadata")]
         public Dictionary<string, string> Metadata { get; set; }
 
         [JsonProperty("package_dimensions")]
-        public PackageDimensionOptions PackageDimensions { get; set; }
+        public emptyStringable PackageDimensions { get; set; }
 
         [JsonProperty("price")]
-        public long? Price { get; set; }
+        public long Price { get; set; }
 
         [JsonProperty("product")]
         public string Product { get; set; }

@@ -8,10 +8,10 @@ namespace Stripe
     public class PaymentIntentUpdateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("amount")]
-        public long? Amount { get; set; }
+        public long Amount { get; set; }
 
         [JsonProperty("application_fee_amount")]
-        public long? ApplicationFeeAmount { get; set; }
+        public emptyStringable ApplicationFeeAmount { get; set; }
 
         [JsonProperty("currency")]
         public string Currency { get; set; }
@@ -28,20 +28,28 @@ namespace Stripe
         [JsonProperty("payment_method")]
         public string PaymentMethod { get; set; }
 
+        [JsonProperty("payment_method_options")]
+        public PaymentIntentPaymentMethodOptions PaymentMethodOptions
+        {
+            get;
+            set;
+
+        }
+
         [JsonProperty("payment_method_types")]
         public List<string> PaymentMethodTypes { get; set; }
 
         [JsonProperty("receipt_email")]
-        public string ReceiptEmail { get; set; }
+        public emptyStringable ReceiptEmail { get; set; }
 
         [JsonProperty("save_payment_method")]
-        public bool? SavePaymentMethod { get; set; }
+        public bool SavePaymentMethod { get; set; }
 
         [JsonProperty("setup_future_usage")]
-        public string SetupFutureUsage { get; set; }
+        public emptyStringable SetupFutureUsage { get; set; }
 
         [JsonProperty("shipping")]
-        public ChargeShippingOptions Shipping { get; set; }
+        public emptyStringable Shipping { get; set; }
 
         [JsonProperty("source")]
         public string Source { get; set; }
@@ -53,7 +61,7 @@ namespace Stripe
         public string StatementDescriptorSuffix { get; set; }
 
         [JsonProperty("transfer_data")]
-        public PaymentIntentTransferDataOptions TransferData { get; set; }
+        public PaymentIntentTransferData TransferData { get; set; }
 
         [JsonProperty("transfer_group")]
         public string TransferGroup { get; set; }

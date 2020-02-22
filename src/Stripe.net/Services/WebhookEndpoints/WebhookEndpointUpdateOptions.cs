@@ -8,7 +8,7 @@ namespace Stripe
     public class WebhookEndpointUpdateOptions : BaseOptions
     {
         [JsonProperty("disabled")]
-        public bool? Disabled { get; set; }
+        public bool Disabled { get; set; }
 
         [JsonProperty("enabled_events")]
         public List<string> EnabledEvents { get; set; }

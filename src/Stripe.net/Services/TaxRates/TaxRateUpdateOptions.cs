@@ -8,7 +8,7 @@ namespace Stripe
     public class TaxRateUpdateOptions : BaseOptions, IHasMetadata
     {
         [JsonProperty("active")]
-        public bool? Active { get; set; }
+        public bool Active { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; }

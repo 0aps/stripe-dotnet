@@ -18,7 +18,7 @@ namespace Stripe
 
         [JsonProperty("billing_cycle_anchor")]
         [JsonConverter(typeof(DateTimeConverter))]
-        public DateTime? BillingCycleAnchor { get; set; }
+        public DateTime BillingCycleAnchor { get; set; }
 
         [JsonProperty("billing_thresholds")]
         public SubscriptionBillingThresholds BillingThresholds { get; set; }
@@ -43,76 +43,64 @@ namespace Stripe
 
         [JsonProperty("current_period_end")]
         [JsonConverter(typeof(DateTimeConverter))]
-        public DateTime? CurrentPeriodEnd { get; set; }
+        public DateTime CurrentPeriodEnd { get; set; }
 
         [JsonProperty("current_period_start")]
         [JsonConverter(typeof(DateTimeConverter))]
-        public DateTime? CurrentPeriodStart { get; set; }
-
-        #region Expandable Customer
-
-        [JsonIgnore]
-        public string CustomerId
-        {
-            get => this.InternalCustomer?.Id;
-            set => this.InternalCustomer = SetExpandableFieldId(value, this.InternalCustomer);
-        }
-
-        [JsonIgnore]
-        public Customer Customer
-        {
-            get => this.InternalCustomer?.ExpandedObject;
-            set => this.InternalCustomer = SetExpandableFieldObject(value, this.InternalCustomer);
-        }
+        public DateTime CurrentPeriodStart { get; set; }
 
         [JsonProperty("customer")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Customer>))]
-        internal ExpandableField<Customer> InternalCustomer { get; set; }
-        #endregion
+        public todo-thingy Customer { get; set; }
 
         [JsonProperty("days_until_due")]
         public long? DaysUntilDue { get; set; }
 
         #region Expandable DefaultPaymentMethod
-
         [JsonIgnore]
         public string DefaultPaymentMethodId
         {
             get => this.InternalDefaultPaymentMethod?.Id;
             set => this.InternalDefaultPaymentMethod = SetExpandableFieldId(value, this.InternalDefaultPaymentMethod);
         }
-
         [JsonIgnore]
-        public PaymentMethod DefaultPaymentMethod
+        public DefaultPaymentMethod DefaultPaymentMethod
         {
             get => this.InternalDefaultPaymentMethod?.ExpandedObject;
             set => this.InternalDefaultPaymentMethod = SetExpandableFieldObject(value, this.InternalDefaultPaymentMethod);
         }
 
         [JsonProperty("default_payment_method")]
-        [JsonConverter(typeof(ExpandableFieldConverter<PaymentMethod>))]
-        internal ExpandableField<PaymentMethod> InternalDefaultPaymentMethod { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<DefaultPaymentMethod>))]
+        internal ExpandableField<DefaultPaymentMethod> InternalDefaultPaymentMethod
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         #region Expandable DefaultSource
-
         [JsonIgnore]
         public string DefaultSourceId
         {
             get => this.InternalDefaultSource?.Id;
             set => this.InternalDefaultSource = SetExpandableFieldId(value, this.InternalDefaultSource);
         }
-
         [JsonIgnore]
-        public IPaymentSource DefaultSource
+        public DefaultSource DefaultSource
         {
             get => this.InternalDefaultSource?.ExpandedObject;
             set => this.InternalDefaultSource = SetExpandableFieldObject(value, this.InternalDefaultSource);
         }
 
         [JsonProperty("default_source")]
-        [JsonConverter(typeof(ExpandableFieldConverter<IPaymentSource>))]
-        internal ExpandableField<IPaymentSource> InternalDefaultSource { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<DefaultSource>))]
+        internal ExpandableField<DefaultSource> InternalDefaultSource
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("default_tax_rates")]
@@ -129,24 +117,27 @@ namespace Stripe
         public StripeList<SubscriptionItem> Items { get; set; }
 
         #region Expandable LatestInvoice
-
         [JsonIgnore]
         public string LatestInvoiceId
         {
             get => this.InternalLatestInvoice?.Id;
             set => this.InternalLatestInvoice = SetExpandableFieldId(value, this.InternalLatestInvoice);
         }
-
         [JsonIgnore]
-        public Invoice LatestInvoice
+        public LatestInvoice LatestInvoice
         {
             get => this.InternalLatestInvoice?.ExpandedObject;
             set => this.InternalLatestInvoice = SetExpandableFieldObject(value, this.InternalLatestInvoice);
         }
 
         [JsonProperty("latest_invoice")]
-        [JsonConverter(typeof(ExpandableFieldConverter<Invoice>))]
-        internal ExpandableField<Invoice> InternalLatestInvoice { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<LatestInvoice>))]
+        internal ExpandableField<LatestInvoice> InternalLatestInvoice
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("livemode")]
@@ -156,30 +147,39 @@ namespace Stripe
         public Dictionary<string, string> Metadata { get; set; }
 
         [JsonProperty("next_pending_invoice_item_invoice")]
-        public long? NextPendingInvoiceItemInvoice { get; set; }
+        [JsonConverter(typeof(DateTimeConverter))]
+        public DateTime? NextPendingInvoiceItemInvoice { get; set; }
 
         [JsonProperty("pending_invoice_item_interval")]
-        public SubscriptionPendingInvoiceItemInterval PendingInvoiceItemInterval { get; set; }
+        public SubscriptionPendingInvoiceItemInterval PendingInvoiceItemInterval
+        {
+            get;
+            set;
+
+        }
 
         #region Expandable PendingSetupIntent
-
         [JsonIgnore]
         public string PendingSetupIntentId
         {
             get => this.InternalPendingSetupIntent?.Id;
             set => this.InternalPendingSetupIntent = SetExpandableFieldId(value, this.InternalPendingSetupIntent);
         }
-
         [JsonIgnore]
-        public SetupIntent PendingSetupIntent
+        public PendingSetupIntent PendingSetupIntent
         {
             get => this.InternalPendingSetupIntent?.ExpandedObject;
             set => this.InternalPendingSetupIntent = SetExpandableFieldObject(value, this.InternalPendingSetupIntent);
         }
 
         [JsonProperty("pending_setup_intent")]
-        [JsonConverter(typeof(ExpandableFieldConverter<SetupIntent>))]
-        internal ExpandableField<SetupIntent> InternalPendingSetupIntent { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<PendingSetupIntent>))]
+        internal ExpandableField<PendingSetupIntent> InternalPendingSetupIntent
+        {
+            get;
+            set;
+
+        }
         #endregion
 
         [JsonProperty("pending_update")]
@@ -192,34 +192,31 @@ namespace Stripe
         public long? Quantity { get; set; }
 
         #region Expandable Schedule
-
         [JsonIgnore]
         public string ScheduleId
         {
             get => this.InternalSchedule?.Id;
             set => this.InternalSchedule = SetExpandableFieldId(value, this.InternalSchedule);
         }
-
         [JsonIgnore]
-        public SubscriptionSchedule Schedule
+        public Schedule Schedule
         {
             get => this.InternalSchedule?.ExpandedObject;
             set => this.InternalSchedule = SetExpandableFieldObject(value, this.InternalSchedule);
         }
 
         [JsonProperty("schedule")]
-        [JsonConverter(typeof(ExpandableFieldConverter<SubscriptionSchedule>))]
-        internal ExpandableField<SubscriptionSchedule> InternalSchedule { get; set; }
+        [JsonConverter(typeof(ExpandableFieldConverter<Schedule>))]
+        internal ExpandableField<Schedule> InternalSchedule { get; set; }
         #endregion
 
         [JsonProperty("start_date")]
         [JsonConverter(typeof(DateTimeConverter))]
-        public DateTime? StartDate { get; set; }
+        public DateTime StartDate { get; set; }
 
         [JsonProperty("status")]
         public string Status { get; set; }
 
-        [Obsolete("Use DefaultTaxRates")]
         [JsonProperty("tax_percent")]
         public decimal? TaxPercent { get; set; }
 
